@@ -2,7 +2,7 @@
 
 * What is UNIX/LINUX?
 	* Why use it?
-* Structure of the network (COuld this be combined with the Wednesday session?)
+* Structure of the network (Could this be combined with the Wednesday session?)
 * Login options on Linux servers
 	* Direct
 	* SSH_TTY (PuTTY)
@@ -92,4 +92,17 @@
 	* Mac
 	* Windows
 	* Linux
-* 
+
+* Make sure to make a big deal about how the various functions, programs are used
+ 
+
+* Try to make it into a tutorial, with a clear goal, laid out at the start of the workshop 
+
+* GeoSciences Network Structure should be done using a diagram
+
+
+* Home folder - "if you have a mac this will be familiar to you"
+
+* Using `*`
+
+* For PhD students, the difference between using your office computer and a normal GeoSciences workstation - installing programs
