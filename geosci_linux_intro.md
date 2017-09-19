@@ -11,19 +11,21 @@
 9. [Shell scripting](#scripting)
 10. [(n)curses programs](#curses)
 
->This is the introduction <a name="introduction"></a>
-
-
+<a name="introduction"></a>
 # Linux in GeoSciences
 
 The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.
 
 Students use the GeoSciences UNIX systems for a variety of tasks, including but not limited to:
 
-- List one
-- List 2
+- Simulation modelling
+- GIS and mapping
+- Running an email server
+- Programming
 
-While this workshop is designed as a definitive reference, it should provide a good introduction from which you can continue to learn about this powerful resource.
+Unlike the Windows operating system, UNIX based operating systems give much more control to the user, primarily through the command line. Additionally, much of the software available on UNIX platforms is free and open source, meaning that you can see how the program is built. Having this amount of control is a very useful attribute in academia where research should be entirely reproducible and repeatable. When you become adept at using the Linux command line, you will be able to perform tedious tasks much quicker than you ever could on a Windows machine.
+
+While this workshop is not designed to be a definitive reference, it should provide a good introduction from which you can continue to learn about this powerful resource.
 
 All the introduction materials, including this sheet, can be found at:
 
@@ -31,10 +33,9 @@ All the introduction materials, including this sheet, can be found at:
 http://www.geos.ed.ac.uk/~gisteac/wkzero
 ```
 
-
 ## Targets for this session
 
-You should be able to:
+By the end of this workshop you should be able to:
 
 - Log on to any UNIX machine in the School of GeoSciences
 - Locate your home directory
@@ -45,7 +46,7 @@ You should be able to:
 - View plain text files in a number of different ways
 - Find help on commands/programs using `man` and help on the web
 - Download and retrieve data via FTP
-- Monitor disk space used, and find out about other users on the system
+- Monitor memory usage, and find out about other users on the system using `finger`, `ps`, `kill`
 - Search within files using `grep`
 - Start full UNIX applications and understand about different types of application
 - Connect to different machines using `ssh`
@@ -58,24 +59,27 @@ UNIX is a loose family of operating systems that share characteristics and are d
 
 The Operating System that most of the GeoSciences UNIX systems run on is called Linux. 
 
-
-## Why use Linux?
-
-
-
 ## GeoSciences network structure
 
+There are three ways to access systems running Linux in the School of GeoSciences:
 
+- Login directly to a GeoSciences Linux workstation, which access Linux servers by default
+- Login to a GeoSciences Windows machine and connect to a Linux server remotely
+- Login to a Linux server remotely from your personal computer, when connected to the University VPN
+
+By far the most common way to access Linux is to use a GeoSciences Windows machine, though using a personal laptop is becoming more popular.
 
 ![](img/net_struc.png)
 
-## Logging in to the GeoSciences Linux servers
+## Logging in to the GeoSciences Linux servers via the command line
 
-There are two ways to interact with the Linux systems, through a text based command line interface or through a graphical remote desktop.
+Most of the tasks you will need to use a Linux server for can be achieved through a command line interface like the one in the picture below:
 
-### Command line interface
+![](img/cli.png)
 
-#### From a GeoSciences Windows machine
+While working in the command line might seem daunting, it is worth learning some basic commands now, once you become comfortable with them you will find they are much quicker than using a graphical Windows-like interface. Additionally, some programs can only be run from the command line.
+
+#### Logging in from a GeoSciences Windows machine
 To connect from a Windows machine you can use PuTTY. PuTTY is a free and open source program that provides a terminal interface to allow connecting to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
 
 First, open PuTTY and configure the PuTTY session: 
@@ -92,7 +96,7 @@ You can also use PuTTY on your own windows machine, you can download it from [he
 
 Make sure you are connected to the University VPN service ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)), then open PuTTY and connect using the same options as for a GeoSciences Windows machine.
 
-#### From a macOS/Linux machine
+#### From a personal macOS/Linux machine
 If you have a personal macOS or Linux machine you can use a terminal emulator such as `Terminal.app` to connect to a University Linux server. 
 
 Open `Terminal.app` or your terminal emulator of choice and type the following, replacing `s1234567` with your own UUN:
@@ -103,8 +107,249 @@ ssh -X s1234567@burn.geos.ed.ac.uk
 
 Press "Enter", then follow the instructions. When it asks for your password use the one you use to login to MyEd, don't worry if the password doesn't look like it's being typed, the computer is just trying to keep your details secret!
 
-### Graphical interface 
+## The Linux folder structure
+Make sure you are connected to the Linux burn server using whatever means suits you. When you first login your terminal window should look like this:
 
+![](img/prompt.png)
+
+```
+[s1234567@burn ~]$ ■
+```
+
+This innocuous line, known as the bash prompt actually tells us some useful information:
+
+`s1234567` is obviously your UUN
+`burn` is the hostname, i.e. the name of the server you are connected to
+`~` Is the directory you are currently in, `~` is shorthand for the home directory
+`$` indicates the end of the bash prompt and the start of the space where you can type commands
+
+## Basic file system operations from the command line
+
+### Changing directories
+
+To see what directories and files are inside the current directory type:
+
+```
+ls
+```
+ 
+followed by the <Enter> key. All commands must be followed by the <Enter> key to run them.
+
+To change to another directory, type `cd` then the directory name. List the directories in your current directory using `ls` then pick one and change to it:
+
+```
+ls
+
+cd Documents
+```
+
+Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the Documents directory.
+
+The `~` (Tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to the `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is nearly no chance of losing your data when it is stored in this directory. 
+
+To move up one directory e.g. from `Documents` back to the home directory, type:
+
+```
+cd ..
+```
+
+To jump back to the home directory from anywhere, just type `cd` without specifying any directory:
+
+```
+cd
+```
+
+### Creating directories and files
+
+To demonstrate some of the simple file operations that you can perform from the command line, return to the home folder (`cd`) and make a new directory called `linux_intro` like this:
+
+```
+mkdir linux_intro
+```
+
+Move into that directory and create three more directories, `notes`, `downloads` and `data`:
+
+```
+cd linux_intro
+
+mkdir notes
+
+mkdir downloads
+
+mkdir data
+```
+
+Then create a directory inside the notes directory called `wk_1`:
+
+```
+mkdir notes/wk_1
+```
+
+Type `ls` to check that the directories have been created.
+
+move into the `notes` directory, then the `wk_1` directory and create an empty file called `notes.txt` like this:
+
+```
+cd ~/linux_intro/notes/wk_1
+
+touch notes.txt
+```
+
+Notice how instead of using the relative filepath to move into the `wk_1` directory (e.g. `cd wk_1`), this time I had to use the full filepath (`~/linux_intro/notes/wk_1`) because I was too far away from the `wk_1` directory for Linux to know what I was talking about.
+
+Move back to the `linux_intro` folder and check out the new directory structure you have made by typing:
+
+```
+cd ../..
+
+tree
+```
+
+The output should look like this:
+
+![](tree.png)
+
+
+### Moving files and directories
+
+Next I want to make a copy of my `notes.txt` file and place it in my `home` directory. To do this I can use `cp`:
+
+```
+cp ~/linux_intro/notes/wk_1/notes.txt ~/notes.txt
+```
+
+But it would be much more useful if the file was in my `Documents` directory, so I can move the file using `mv`:
+
+```
+cd
+
+mv notes.txt ~/Documents/notes.txt
+```
+
+`mv` can also be used to rename files:
+
+```
+cd ~/Documents
+
+mv notes.txt linux_notes.txt
+```
+
+We have done a lot of moving around different directories, which can become confusing. If you ever want to check what directory you are in you can type:
+
+```
+pwd
+```
+
+Imagine I'm done working with `~/Documents/linux_notes.txt` and want to delete it. I can delete files using:
+
+```
+rm ~/Documents/notes.txt
+```
+
+But it is important to note that when you delete a file in this way it doesn't get moved to the recycling bin, IT IS GONE FOREVER!
+
+I can also remove directories by adding the `-r` flag to `rm`:
+
+```
+cd ~/linux_intro
+
+rm -r data
+```
+
+Flags can be added to many commands to change their behaviour, or to tell the command that you are about to add information of a certain type. Another command you can add to `rm` is the `-i` flag, which asks the user whether they really want to delete the file before deleting it, which is very useful when `rm` deletes files irreversibly. I could delete `~/Documents/linux_notes.txt` using the `-i` flag:
+
+```
+rm -i ~/Documents/linux_notes.txt
+```
+
+To find out about other flags and their uses you can use the `man` command followed by the command you want to investigate. This opens the `man`ual page for that command. While `man` pages can be a bit dense, they should be your first port of call when investigating what a command does. e.g.: 
+
+```
+man rm
+```
+
+The `man` page will be opened in what is known as a "pager". Pagers allow you to preview plain text documents by scrolling up and down, but don't let you edit the document. They are a good way of quickly getting an idea of what is in a document. 
+
+There are multiple pagers that you can specify but the one that `man` uses by default is called `less`. 
+
+### Shared resources
+As well as your personal data stored in the `home` directory, you can access shared data in the `/geos` folder. This might be the data for a specific course like the Kindrogan field course, or open access data such as shapefiles for Scotland's roads.
+
+Move to the `/geos` directory like this:
+
+```
+cd /geos
+```
+
+It is important to note that while you can open files in the shared space, it is unlikely that you will be able to edit them. Instead you can copy them to your `home` folder using `cp` to have an editable copy.
+
+Try this by copying the contents of the `/geos/netdata/wkzero` directory to your home folder
+
+```
+cd ~/geos/netdata
+
+cp -r wkzero/ ~/
+```
+
+Notice how I had to add the `-r` flag to let `cp` know that I wanted to copy a directory instead of a file. Also note the `/` I used to specify that `wkzero` is a directory, not a file.
+
+### Scratch space
+Another shared space that will be useful is `/scratch/s1234567`, obviously your scratch space will be named after your UUN. Scratch space offers a very large amount of temporary storage space. It is not backed up so don't leave anything important on there for too long, but it could be useful if you want somewhere to unpack a huge dataset, or create lots of model objects.
+
+To move to your scratch space just type:
+
+```
+cd /scratch/s1234567
+```
+
+switching out `s1234567` with your own UUN.
+
+## Text editors
+Our notes file (`~/linux_intro/notes/notes.txt`) is still a blank file. Let's fill it with some notes. There are a multitude of terminal based text editors available on the GeoSciences Linux systems. Some notable ones, in my own order from most to least complex are:
+
+- `emacs`
+- `vim`
+- `ed`
+- `nano`
+
+Open up our blank `notes.txt` file using `nano`, type some text then save and exit using `Ctrl-x`.
+
+```
+cd ~/linux_intro/notes
+
+nano notes.txt
+```
+
+Then use the `less` pager to read the text you just typed:
+
+```
+less notes.txt
+```
+Tip: type `q` to exit `less`
+
+## Piping and redirecting data
+
+## Monitoring processes
+
+## Running background processes
+
+## Shell scripting
+
+## Downloading files from a file server
+
+## Printing files from the command line
+
+## Manipulating pdf files
+
+## (n)curses programs
+
+### Alpine
+
+## Logging on using a graphical interface 
+
+Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:
+
+![](img/gui.png)
 
 #### From a GeoSciences Windows machine
 
@@ -147,207 +392,3 @@ Give the connection a sensible name
 Connect to the newly created connection and select a desktop environment such as `KDE`.
 
 When prompted for a password use the password you use to login to MyEd
-
-## The Linux folder structure
-
-### The `home` folder
-
-This will be familiar to anyone who has used a macOS or Linux machine before.
-
-The home folder should contain the same files as the `M:` drive on a GeoSciences Windows machine.
-
-## Basic file system operations from the command line
-
-### The bash prompt
-
-When you first login to a UNIX system through the command line you will be presented with something like this:
-
-![](img/prompt.png)
-
-```
-[s1234567@burn ~]$ ■
-```
-
-This innocuous line, known as the bash prompt actually tells us some useful information:
-
-`s1234567` is obviously your UUN
-`burn` is the hostname, i.e. the name of the server you are connected to
-`~` Is the directory you are currently in, `~` is shorthand for the home directory
-`$` indicates the end of the bash prompt and the start of the space where you can type commands
-
-### Changing directories
-
-To see what directories and files are inside the current directory type:
-
-```
-ls
-```
-
-To change to another directory, type `cd` then the directory name. List the directories in your home directory using `ls` then pick one and change to it:
-
-```
-ls
-
-cd Documents
-```
-
-Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the Documents folder
-
-To move up one directory e.g. from `Documents` back to the home directory, type:
-
-```
-cd ..
-```
-
-To jump back to the home folder from anywhere, just type `cd` without specifying any directory:
-
-```
-cd
-```
-
-### Creating directories and files
-
-To demonstrate some of the simple file operations that you can perform from the command line, return to the home folder (`cd`) and make a new directory called `linux_intro` like this:
-
-```
-mkdir linux_intro
-```
-
-Move into that directory and create three more directories, `notes`, `downloads` and `data`:
-
-```
-cd linux_intro
-
-mkdir notes
-
-mkdir downloads
-
-mkdir data
-```
-
-Type `ls` to check that the directories have been created.
-
-move into notes and create an empty file called `notes.txt` like this:
-
-```
-cd ~/linux_intro/notes
-
-touch notes.txt
-```
-Notice how instead of using the relative filepath to move into the `notes` directory (e.g. `cd notes`), this time I chose to use the full filepath (`~/linux_intro/notes`)
-
-Move back to the `linux_intro` folder and check out the new directory structure you have made by typing:
-
-```
-cd ..
-
-tree
-```
-
-The output should look like this:
-
-![](tree.png)
-
-
-### Moving files and directories
-
-Next I want to copy my `notes.txt` file to my `Documents` directory in the `~` directory. To do this I can use `cp`:
-
-```
-cd
-
-cp ~/linux_intro/notes/notes.txt ~/Documents/notes.txt
-```
-
-I could also move the file using `mv`:
-
-```
-cd
-
-mv ~/linux_intro/notes/notes.txt ~/Documents/notes.txt
-```
-
-`mv` can also be used to rename files:
-
-```
-cd ~/Documents
-
-mv notes.txt linux_notes.txt
-```
-
-We have done a lot of moving around different directories, which can become confusing. If you ever want to check what directory you are in you can type:
-
-```
-pwd
-```
-
-Imagine I'm done working with `~/Documents/notes.txt` and want to delete it. I can delete files using:
-
-```
-rm ~/Documents/notes.txt
-```
-
-But it is important to note that when you delete a file in this way it doesn't get moved to the recycling bin, IT IS GONE FOREVER!
-
-I can remove directories by adding the `-r` flag to `rm`:
-
-```
-rm -r ~/linux_intro/data
-```
-
-Flags can be added to many commands to change their behaviour, or to tell the command that you are about to add more information. Another command you can add to `rm` is the `-i` flag, which asks the user whether they really want to delete the file before deleting it, which is very useful when `rm` deletes files irreversibly. I could delete `~/Documents/linux_notes.txt` using the `-i` flag:
-
-```
-rm -i ~/Documents/linux_notes.txt
-```
-
-To find out about other flags and their uses you can use the `man` command followed by the command you want to investigate. This opens the `man`ual page for that command. While `man` pages can be a bit dense, they should be your first port of call when investigating what a command does. e.g.: 
-
-```
-man rm
-```
-
-The `man` page will be opened in what is known as a "pager". Pagers allow you to preview plain text documents by scrolling up and down, but don't let you edit the document. They are a good way of quickly getting an idea of what is in a document. 
-
-There are multiple pagers that you can specify but the one that `man` uses by default is called `less`. 
-
-
-### Shared resources
-
-
-
-### Scratch space
-
-
-## What is Bash?
-
-## Text editors
-There are a multitude of terminal based text editors available on the GeoSciences Linux systems. Some notable ones, in my own order from most to least complext are:
-
-- `emacs`
-- `vim`
-- `ed`
-- `nano`
-
-Open up our blank `notes.txt` file using `nano`, type some text then save and exit using `Ctrl-x`.
-
-```
-nano notes.txt
-```
-
-Then use the `less` pager to read the text you just typed:
-
-```
-less notes.txt
-```
-Tip: type `q` to exit `less`
-
-
-
-## Monitoring processes
-
-## Shell scripting
-
-## (n)curses programs
-
-### Alpine

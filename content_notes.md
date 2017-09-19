@@ -1,28 +1,9 @@
 # What is in the current course?
 
-* What is UNIX/LINUX?
-	* Why use it?
-* Structure of the network (Could this be combined with the Wednesday session?)
-* Login options on Linux servers
-	* Direct
-	* SSH_TTY (PuTTY)
-	* SSH_Graphical (NX)
-		* using NX client for windows 
-* Directory structure
-	* Home (~)
-	* shared network drives
 * Basic commands:
-	* ls -a -l
-	* cd
-	* cp
-	* mv
-	* mkdir
-	* pwd
-	* rm -r -i
 	* logout
 	* xlock/xeyes demo of x environment
 	* shell scripts e.g. ./<SCRIPT>
-	* man <COMMAND> -k 
 	* ftp
 		* open
 		* type binary
@@ -68,15 +49,8 @@
 		* lpr
 	* a2ps 
 	*
-* The bash shell prompt
 * Shell scripting
 	* `!#/bin/bash` 
-* Alternative uses
-	* File storage
-		+ databases 
-	* Web server
-	* Email server
-* Scratch space
 * programming languages
 	* Python, MATLAB, IDL, Java, R, 
 * Text editors - maybe present as a table with features
