@@ -312,7 +312,6 @@ The `man` page will be opened in what is known as a "pager". Pagers allow you to
 There are multiple pagers that you can specify but the one that `man` uses by default is called `less`. 
 
 
-
 ### Shared resources
 
 
@@ -323,6 +322,27 @@ There are multiple pagers that you can specify but the one that `man` uses by de
 ## What is Bash?
 
 ## Text editors
+There are a multitude of terminal based text editors available on the GeoSciences Linux systems. Some notable ones, in my own order from most to least complext are:
+
+- `emacs`
+- `vim`
+- `ed`
+- `nano`
+
+Open up our blank `notes.txt` file using `nano`, type some text then save and exit using `Ctrl-x`.
+
+```
+nano notes.txt
+```
+
+Then use the `less` pager to read the text you just typed:
+
+```
+less notes.txt
+```
+Tip: type `q` to exit `less`
+
+
 
 ## Monitoring processes
 
