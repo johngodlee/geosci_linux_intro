@@ -24,20 +24,11 @@
 	* alpine
 	* gui / gtk apps
 		* e.g. acroread, firefox,  
-	* `&` for background processes
-		* bg
-		* fg
 	* ps -a -f -e
 	* kill -9 <PRO_ID>
 	* at / crontab
 		* atq
 		* atrm
-	* `|` - pipes
-	* grep
-		* a small amoutn of regex
-	* `>` - redirects
-	* more
-	* less
 	* head
 	* tail
 	* exit
@@ -48,7 +39,6 @@
 		* lprm
 		* lpr
 	* a2ps 
-	*
 * Shell scripting
 	* `!#/bin/bash` 
 * programming languages
