@@ -77,6 +77,8 @@ Most of the tasks you will need to use a Linux server for can be achieved throug
 
 ![](img/cli.png)
 
+Choose your method of connecting to the GeoSciences Linux server from the options below and follow the instructions in that section.
+
 #### Logging in from a GeoSciences Windows machine
 To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a terminal interface to allow connecting to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
 
@@ -106,7 +108,7 @@ ssh -X s1234567@burn.geos.ed.ac.uk
 Press "Enter", then follow the instructions. When it asks for your password use the one you use to login to MyEd, don't worry if the password doesn't look like it's being typed, the computer is just trying to keep your details secret!
 
 ## The Linux folder structure
-Make sure you are connected to the Linux burn server using whatever means suits you. When you first login your terminal window should look like this:
+By this point you should be connected to the Linux burn server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look like this:
 
 ![](img/prompt.png)
 
@@ -116,10 +118,10 @@ Make sure you are connected to the Linux burn server using whatever means suits 
 
 This innocuous line, known as the bash prompt actually tells us some useful information:
 
-`s1234567` is obviously your UUN
-`burn` is the hostname, i.e. the name of the server you are connected to
-`~` Is the directory you are currently in, `~` is shorthand for the home directory
-`$` indicates the end of the bash prompt and the start of the space where you can type commands
+- `s1234567` is obviously your UUN
+- `burn` is the hostname, i.e. the name of the server you are connected to
+- `~` Is the directory you are currently in, `~` is shorthand for the home directory
+- `$` marks the end of the bash prompt and the start of the space where you can type commands
 
 ## Basic file system operations from the command line
 
@@ -141,9 +143,9 @@ ls
 cd Documents
 ```
 
-Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the Documents directory.
+Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the `Documents` directory. Enter `ls` again to see that the list of files has also changed, because you are in a different directory.
 
-The `~` (Tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to the `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is nearly no chance of losing your data when it is stored in this directory.
+The `~` (tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to the `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. The `home` directory default size is quite small, but can be increased if you need extra space for your research. As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is hardly any chance of losing your data when it is stored in this directory.
 
 To move up one directory e.g. from `Documents` back to the home directory, type:
 
@@ -151,11 +153,15 @@ To move up one directory e.g. from `Documents` back to the home directory, type:
 cd ..
 ```
 
-To jump back to the home directory from anywhere, just type `cd` without specifying any directory:
+The `..` two dots are shorthand for the directory directly above the one you are in.
+
+To jump back to the `home` directory from anywhere, just type `cd` without specifying any directory:
 
 ```
 cd
 ```
+
+Try this out by `cd`ing into a directory of your choice, then jumping back to the `home` directory using `cd`.
 
 ### Creating directories and files
 
@@ -165,7 +171,7 @@ To demonstrate some of the simple file operations that you can perform from the 
 mkdir linux_intro
 ```
 
-Move into that directory and create three more directories, `notes`, `downloads` and `data`:
+`cd` into that directory and create three more directories, `notes`, `downloads` and `data`:
 
 ```
 cd linux_intro
@@ -183,9 +189,11 @@ Then create a directory inside the notes directory called `wk_1`:
 mkdir notes/wk_1
 ```
 
-Type `ls` to check that the directories have been created.
+Notice that I used `/` to create the `wk_1` directory inside an existing directory.
 
-move into the `notes` directory, then the `wk_1` directory and create an empty file called `notes.txt` like this:
+Type `tree` to check that all the directories have been created. `tree` gives a nice overview of the directory structure in the directory you are currently in.
+
+`cd` into the `notes` directory, then the `wk_1` directory and create an empty file called `notes.txt` like this:
 
 ```
 cd ~/linux_intro/notes/wk_1
@@ -193,7 +201,7 @@ cd ~/linux_intro/notes/wk_1
 touch notes.txt
 ```
 
-Notice how instead of using the relative filepath to move into the `wk_1` directory (e.g. `cd wk_1`), this time I had to use the full filepath (`~/linux_intro/notes/wk_1`) because I was too far away from the `wk_1` directory for Linux to know what I was talking about.
+Notice how instead of using the relative filepath to move into the `wk_1` directory (e.g. `cd wk_1`), this time I used the full filepath (`~/linux_intro/notes/wk_1`) because I was too far away from the `wk_1` directory for Linux to know what I was talking about.
 
 Move back to the `linux_intro` folder and check out the new directory structure you have made by typing:
 
