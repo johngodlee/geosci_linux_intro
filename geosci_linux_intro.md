@@ -21,9 +21,9 @@ Students use the GeoSciences UNIX systems for a variety of tasks, including but 
 - Simulation modelling
 - GIS and mapping
 - Running an email server
-- Programming
+- Statistical programming
 
-Unlike the Windows operating system, UNIX based operating systems give much more control to the user, primarily through the command line. Additionally, much of the software available on UNIX platforms is free and open source, meaning that you can see how the program is built. Having this amount of control is a very useful attribute in academia where research should be entirely reproducible and repeatable. When you become adept at using the Linux command line, you will be able to perform tedious tasks much quicker than you ever could on a Windows machine.
+Unlike the Windows operating system, UNIX based operating systems give much more control to the user. The most common and powerful method of interaction with a UNIX based system is through the command line rather than through a windows-like point and click interface. Additionally, much of the software available on UNIX platforms is free and open source, meaning that everybody has access to the code used to create a piece of software, meaning that you know exactly what the program is doing. Having this amount of control and knowledge is a very useful attribute in academia where research should be entirely [reproducible and repeatable](LINK).
 
 While this workshop is not designed to be a definitive reference, it should provide a good introduction from which you can continue to learn about this powerful resource.
 
@@ -55,19 +55,19 @@ By the end of this workshop you should be able to:
 
 ## What is UNIX?
 
-UNIX is a loose family of operating systems that share characteristics and are derived from the original AT&T UNIX OS that was developed by Bell Labs in the 1970s. Many UNIX-like operating systems have arisen since then, most notably, Linux, Android, and macOS. 
+UNIX is a loose family of operating systems that share characteristics and are derived from the original AT&T UNIX OS that was developed by Bell Labs in the 1970s. Many UNIX-like operating systems have arisen since then, most notably, Linux, Android, and macOS.
 
-The Operating System that most of the GeoSciences UNIX systems run on is called Linux. 
+The Operating System that most of the GeoSciences UNIX systems run on is called Linux.
 
 ## GeoSciences network structure
 
-There are three ways to access systems running Linux in the School of GeoSciences:
+There are three main ways to access systems running Linux in the School of GeoSciences:
 
 - Login directly to a GeoSciences Linux workstation, which access Linux servers by default
 - Login to a GeoSciences Windows machine and connect to a Linux server remotely
 - Login to a Linux server remotely from your personal computer, when connected to the University VPN
 
-By far the most common way to access Linux is to use a GeoSciences Windows machine, though using a personal laptop is becoming more popular.
+By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal laptop is becoming more popular.
 
 ![](img/net_struc.png)
 
@@ -77,27 +77,25 @@ Most of the tasks you will need to use a Linux server for can be achieved throug
 
 ![](img/cli.png)
 
-While working in the command line might seem daunting, it is worth learning some basic commands now, once you become comfortable with them you will find they are much quicker than using a graphical Windows-like interface. Additionally, some programs can only be run from the command line.
-
 #### Logging in from a GeoSciences Windows machine
-To connect from a Windows machine you can use PuTTY. PuTTY is a free and open source program that provides a terminal interface to allow connecting to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
+To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a terminal interface to allow connecting to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
 
-First, open PuTTY and configure the PuTTY session: 
+First, open PuTTY and configure the PuTTY session. `burn` is the name of the GeoSciences Linux server, it's address is `burn.geos.ed.ac.uk`:
 
 "Host Name (or IP address)" = `burn.geos.ed.ac.uk`
 "Port" = `22`
 "Connection type:" = `SSH`
 In "Category: Connection, SSH" Check `Enable X11 forwarding` - which allows X window applications to be opened on your desktop (e.g. `xeyes`)
 
-Then click "Open" to start the connection, type your UUN e.g. `s1234567` and the password you use to login to MyEd, Windows machines etc.
+Then click "Open" to start the connection, type your UUN (e.g. `s1234567`) and the password you use to login to MyEd, Windows machines etc.
 
 #### From a personal Windows machine
-You can also use PuTTY on your own windows machine, you can download it from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). 
+You can also use PuTTY on your own windows machine, you can download it from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
 Make sure you are connected to the University VPN service ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)), then open PuTTY and connect using the same options as for a GeoSciences Windows machine.
 
 #### From a personal macOS/Linux machine
-If you have a personal macOS or Linux machine you can use a terminal emulator such as `Terminal.app` to connect to a University Linux server. 
+If you have a personal macOS or Linux machine you can use a terminal emulator such as `Terminal.app` to connect to a University Linux server.
 
 Open `Terminal.app` or your terminal emulator of choice and type the following, replacing `s1234567` with your own UUN:
 
@@ -132,7 +130,7 @@ To see what directories and files are inside the current directory type:
 ```
 ls
 ```
- 
+
 followed by the <Enter> key. All commands must be followed by the <Enter> key to run them.
 
 To change to another directory, type `cd` then the directory name. List the directories in your current directory using `ls` then pick one and change to it:
@@ -145,7 +143,7 @@ cd Documents
 
 Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the Documents directory.
 
-The `~` (Tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to the `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is nearly no chance of losing your data when it is stored in this directory. 
+The `~` (Tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to the `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is nearly no chance of losing your data when it is stored in this directory.
 
 To move up one directory e.g. from `Documents` back to the home directory, type:
 
@@ -262,15 +260,15 @@ Flags can be added to many commands to change their behaviour, or to tell the co
 rm -i ~/Documents/linux_notes.txt
 ```
 
-To find out about other flags and their uses you can use the `man` command followed by the command you want to investigate. This opens the `man`ual page for that command. While `man` pages can be a bit dense, they should be your first port of call when investigating what a command does. e.g.: 
+To find out about other flags and their uses you can use the `man` command followed by the command you want to investigate. This opens the `man`ual page for that command. While `man` pages can be a bit dense, they should be your first port of call when investigating what a command does. e.g.:
 
 ```
 man rm
 ```
 
-The `man` page will be opened in what is known as a "pager". Pagers allow you to preview plain text documents by scrolling up and down, but don't let you edit the document. They are a good way of quickly getting an idea of what is in a document. 
+The `man` page will be opened in what is known as a "pager". Pagers allow you to preview plain text documents by scrolling up and down, but don't let you edit the document. They are a good way of quickly getting an idea of what is in a document.
 
-There are multiple pagers that you can specify but the one that `man` uses by default is called `less`. 
+There are multiple pagers that you can specify but the one that `man` uses by default is called `less`.
 
 ### Shared resources
 As well as your personal data stored in the `home` directory, you can access shared data in the `/geos` folder. This might be the data for a specific course like the Kindrogan field course, or open access data such as shapefiles for Scotland's roads.
@@ -333,7 +331,7 @@ Tip: type `q` to exit `less`
 Move back to the home directory then `cd` to the `wkzero` directory we copied earlier:
 
 ```
-cd 
+cd
 
 cd wkzero
 ```
@@ -423,7 +421,7 @@ Where <PID> is the ID number that I was presented with earlier.
 
 ### Alpine
 
-## Logging on using a graphical interface 
+## Logging on using a graphical interface
 
 Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:
 
@@ -431,7 +429,7 @@ Some programs may require a graphical user interface (GUI). For these programs t
 
 #### From a GeoSciences Windows machine
 
-Open "NX Connection Wizard" from the Start menu. 
+Open "NX Connection Wizard" from the Start menu.
 
 Configure the connection like so:
 
@@ -449,7 +447,7 @@ Then when the login window appears, login with your UUN and the password you use
 
 Download NoMachine from (https://www.nomachine.com/download)[https://www.nomachine.com/download]
 
-Connect to the University VPN ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)). 
+Connect to the University VPN ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)).
 
 Open NoMachine
 
