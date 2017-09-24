@@ -2,16 +2,20 @@
 
 1. [Introduction](#introduction)
 2. [What is UNIX?](#what)
-3. [The GeoSciences networ structure](#network)
+3. [The GeoSciences network structure](#network)
 4. [Logging in](#login)
 5. [Basic commands](#basic)
 6. [Scratch space](#scratch)
-7. [Text editors](#editors)
+7. [Text editors and pagers](#editors)
 8. [Monitoring processes](#monitor)
 9. [Shell scripting](#scripting)
-10. [(n)curses programs](#curses)
+10. [Downloading files](#download)
+11. [Using a graphical interface](#gui)
+12. [Even more computing power with `eddie`](#eddie)
+
 
 <a name="introduction"></a>
+
 # Linux in GeoSciences
 
 The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.
@@ -52,12 +56,15 @@ By the end of this workshop you should be able to:
 - Connect to different machines using `ssh`
 - Tell other people how awesome UNIX is
 
+<a name="what"></a>
 
 ## What is UNIX?
 
 UNIX is a loose family of operating systems that share characteristics and are derived from the original AT&T UNIX OS that was developed by Bell Labs in the 1970s. Many UNIX-like operating systems have arisen since then, most notably, Linux, Android, and macOS.
 
 The Operating System that most of the GeoSciences UNIX systems run on is called Linux.
+
+<a name="network"></a>
 
 ## GeoSciences network structure
 
@@ -70,6 +77,8 @@ There are three main ways to access systems running Linux in the School of GeoSc
 By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal laptop is becoming more popular.
 
 ![](img/net_struc.png)
+
+<a name="login"></a>
 
 ## Logging in to the GeoSciences Linux servers via the command line
 
@@ -106,6 +115,8 @@ ssh -X s1234567@burn.geos.ed.ac.uk
 ```
 
 Press "Enter", then follow the instructions. When it asks for your password use the one you use to login to MyEd, don't worry if the password doesn't look like it's being typed, the computer is just trying to keep your details secret!
+
+<a name="basic"></a>
 
 ## The Linux folder structure
 By this point you should be connected to the Linux burn server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look like this:
@@ -295,6 +306,7 @@ cp -r wkzero/ ~/linux_intro/downloads
 
 Notice how I had to add the `-r` flag to let `cp` know that I wanted to copy a directory instead of a file. Also note the `/` I used to specify that `wkzero` is a directory, not a file.
 
+<a name="scratch"></a>
 ### Scratch space
 Another shared space that will be useful is `/scratch/s1234567`, obviously your scratch space will be named after your UUN. Scratch space offers a very large amount of temporary storage space. It is not backed up so don't leave anything important on there for too long, but it could be useful if you want somewhere to unpack a huge dataset, or create lots of model objects.
 
@@ -304,6 +316,7 @@ To move to your scratch space just type the following, switching out `s1234567` 
 cd /scratch/s1234567
 ```
 
+<a name="editors"></a>
 ## Text editors and pagers
 Our notes file (`~/linux_intro/notes/notes.txt`) is still a blank file. Let's fill it with some notes. There are a multitude of terminal based text editors available on the GeoSciences Linux systems. It is often much quicker to edit a text file in the Linux server environment rather than edit it on a Windows machine and copy it across every time you make a change. Some notable text editors, in my own order from most to least complex are:
 
@@ -383,6 +396,8 @@ Just to recap, I took the contents of `nation_data.txt` (`cat nation_data.txt`),
 
 `grep` can take many different types of arguments, I recommend reading the `man` page for `grep` or look at some online tutorials to see what it can really do.
 
+<a name="monitor"></a>
+
 ## Monitoring processes
 
 On the GeoSciences Linux servers it is quite likely that other users will be working at the same time as you. You can see what everybody else is doing, and everybody else can see what you are doing. It is useful to know what processes you have running so that you can terminate processes, or manage your memory usage. It might also be useful to see what other people are doing that is using up all the memory on the server, making your programs run slowly.
@@ -420,6 +435,10 @@ kill -9 <PID>
 ```
 
 Where <PID> is the ID number that I was presented with earlier in the terminal when I first started the `xeyes` program.
+
+It is useful to know that if you run a program in the background by usign the `&` operator, you can `exit` from your remote session and the program will continue to run, even though you're not there. This could be very useful if you have a huge data crunching program running and you want to go home and sleep.
+
+<a name="scripting"></a>
 
 ## Shell scripting
 
@@ -486,6 +505,8 @@ Then enter:
 First, the script should `ls` the current directory, then ask for us to nominate a file, then for a word to `grep` for. Finally, this should output all the lines containing our nominated word into `less`.
 
 Note that when I called the shell script I had to prefix the script name (`grep_file`) with `./`, this is a finicky requirement for all user made scripts. If you really want to know why this is necessary, read [this](http://www.linfo.org/dot_slash.html) and [this](https://www.stackoverflow.com/q/6331075/5622415). Warning, very dense and boring.
+
+<a name="download"></a>
 
 ## Downloading files from a file server using `ftp` (File Transfer Program/Protocol)
 
@@ -603,13 +624,7 @@ To quickly print a file from the command line you can use the `lp` suite of comm
 
 `lprm file.txt` removes `file.txt` from the queue
 
-## Manipulating pdf files
-
-
-
-## (n)curses programs
-
-### Alpine
+<a name="gui"></a>
 
 ## Logging on using a graphical interface
 
@@ -658,3 +673,17 @@ Give the connection a sensible name
 Connect to the newly created connection and select a desktop environment such as `KDE`.
 
 When prompted for a password use the password you use to login to MyEd
+
+<a name="eddie"></a>
+
+## Logging onto the University of University cluster computer - `eddie`
+
+While `burn.geos.ed.ac.uk` is great for relatively light activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in `burn` is just not enough. This lack of processing power becomes especially apparent when many people are using `burn` at the same time.
+
+If you find you need the extra computing power you can freely use the University of Edinburgh cluster computer, nicknamed `eddie`. To log on you can use `ssh` as you did for `burn`:
+
+```
+ssh
+
+
+```
