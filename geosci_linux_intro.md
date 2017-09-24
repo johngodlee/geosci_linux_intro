@@ -680,10 +680,10 @@ When prompted for a password use the password you use to login to MyEd
 
 While `burn.geos.ed.ac.uk` is great for relatively light activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in `burn` is just not enough. This lack of processing power becomes especially apparent when many people are using `burn` at the same time.
 
-If you find you need the extra computing power you can freely use the University of Edinburgh cluster computer, nicknamed `eddie`. To log on you can use `ssh` as you did for `burn`:
+If you find you need the extra computing power you can freely use the University of Edinburgh cluster computer, nicknamed `eddie`. To log on, first login to `burn` using your chosen method, then in the terminal window type:
 
 ```
-ssh
-
-
+ssh eddie
 ```
+
+To submit scripts to eddie you must submit them as a `jobscript`.
