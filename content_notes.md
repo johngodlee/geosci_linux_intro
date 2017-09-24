@@ -16,15 +16,14 @@
 	* pdfunite
 	* pdfseparate
 	* qpdf
-	* quota -s 
+	* quota -s
 	* du -s -k -h --si
 	* finger
 	* whomai
 	* find
 	* alpine
 	* gui / gtk apps
-		* e.g. acroread, firefox,  
-	* ps -a -f -e
+		* e.g. acroread, firefox,
 	* kill -9 <PRO_ID>
 	* at / crontab
 		* atq
@@ -38,11 +37,11 @@
 		* lpq -P
 		* lprm
 		* lpr
-	* a2ps 
+	* a2ps
 * Shell scripting
-	* `!#/bin/bash` 
+	* `!#/bin/bash`
 * programming languages
-	* Python, MATLAB, IDL, Java, R, 
+	* Python, MATLAB, IDL, Java, R,
 * Text editors - maybe present as a table with features
 	* PSPad
 		* Macros
@@ -58,9 +57,9 @@
 	* Linux
 
 * Make sure to make a big deal about how the various functions, programs are used
- 
 
-* Try to make it into a tutorial, with a clear goal, laid out at the start of the workshop 
+
+* Try to make it into a tutorial, with a clear goal, laid out at the start of the workshop
 
 * GeoSciences Network Structure should be done using a diagram
 
