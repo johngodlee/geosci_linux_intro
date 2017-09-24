@@ -686,4 +686,6 @@ If you find you need the extra computing power you can freely use the University
 ssh eddie
 ```
 
+wiki.ed.ac.uk/display/ResearchServices/Quickstart
+
 To submit scripts to eddie you must submit them as a `jobscript`.
