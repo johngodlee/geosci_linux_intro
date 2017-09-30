@@ -3,16 +3,19 @@
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#what">What is UNIX?</a></li>
 <li><a href="#network">The GeoSciences network structure</a></li>
-<li><a href="#login">Logging in</a></li>
-<li><a href="#basic">Basic commands</a></li>
-<li><a href="#scratch">Scratch space</a></li>
+<li><a href="#login">Logging in via the command line</a></li>
+<li><a href="#basic">The basics</a></li>
+<li><a href="#scratch">Shared resources and Scratch space</a></li>
 <li><a href="#editors">Text editors and pagers</a></li>
+<li><a href="#pipes">Piping and redirecting data</a></li>
 <li><a href="#monitor">Monitoring processes</a></li>
+<li><a href="#background">Running background processes</a></li>
 <li><a href="#scripting">Shell scripting</a></li>
 <li><a href="#download">Downloading files</a></li>
+<li><a href="#printing">Printing in Linux</a></li>
 <li><a href="#gui">Using a graphical interface</a></li>
+<li><a href="#net_drive">Adding network drives to a personal computer</a></li>
 <li><a href="#eddie">Even more computing power with <code>eddie</code></a></li>
-<li><a href="#net_drive">Adding network drives</a></li>
 </ol>
 <p><a name="introduction"></a></p>
 <h1 id="linux-in-geosciences">Linux in GeoSciences</h1>
@@ -87,12 +90,9 @@
 <pre><code>ssh -x s1234567@burn.geos.ed.ac.uk</code></pre>
 <p>Press &quot;Enter&quot;, then follow the instructions. When it asks for your password use the one you use to login to MyEd, don't worry if the password doesn't look like it's being typed, the computer is just trying to keep your details secret!</p>
 <p><a name="basic"></a></p>
-<h2 id="the-bash-prompt">The bash prompt</h2>
+<h2 id="the-basics">The basics</h2>
+<h3 id="the-bash-prompt">The bash prompt</h3>
 <p>By this point you should be connected to the Linux <code>burn</code> server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look something like this:</p>
-<div class="figure">
-<img src="img/prompt.png" />
-
-</div>
 <pre><code>[s1234567@burn ~]$ ■</code></pre>
 <p>This innocuous line, known as the bash prompt actually tells us some really useful information:</p>
 <ul class="incremental">
@@ -101,7 +101,6 @@
 <li><code>~</code> Is the directory you are currently in, <code>~</code> is shorthand for the home directory.</li>
 <li><code>$</code> marks the end of the bash prompt and the start of the space where you can type commands.</li>
 </ul>
-<h2 id="basic-file-system-operations-from-the-command-line">Basic file system operations from the command line</h2>
 <h3 id="changing-directories">Changing directories</h3>
 <p>Before we continue, it's important to note that the word &quot;directory&quot; is used in the Unix literature to mean the same thing as &quot;folder&quot; on a Windows machine.</p>
 <p>To see what directories and files are inside the current directory type:</p>
@@ -139,6 +138,12 @@ mkdir data</code></pre>
 <pre><code>mkdir notes/wk_1</code></pre>
 <p>Notice that I used <code>/</code> to create the <code>wk_1</code> directory inside an existing directory.</p>
 <p>Type <code>tree</code> to check that all the directories have been created. <code>tree</code> gives a nice overview of the directory structure in the directory you are currently in.</p>
+<p>Your tree output should look like this:</p>
+<pre><code>.
+├── data
+├── downloads
+└── notes
+    └── wk_1</code></pre>
 <p><code>cd</code> into the <code>notes</code> directory, then the <code>wk_1</code> directory and create an empty file called <code>notes.txt</code> like this:</p>
 <pre><code>cd ~/linux_intro/notes/wk_1
 
@@ -208,6 +213,7 @@ cp -r wkzero/ ~/linux_intro/downloads</code></pre>
 nano notes.txt</code></pre>
 <p>We can then use a &quot;pager&quot; program to quickly open the file and view the text we just wrote. Pagers are different from text editors in that they can't be used to edit text, only view it. The advantage of pagers is they are often very quick to open and provide a quick way of skimming through a document. Use the <code>less</code> pager to read the text you just typed using the code below, then type <code>q</code> to exit and return to the terminal:</p>
 <pre><code>less notes.txt</code></pre>
+<p><a name="pipes"></a></p>
 <h2 id="piping-and-redirecting-data">Piping and redirecting data</h2>
 <p><code>cd</code> to the <code>wkzero</code> directory that we previously copied from the shared network space into our personal <code>downloads</code> directory:</p>
 <pre><code>cd ~/linux_intro/downloads/wkzero</code></pre>
@@ -243,6 +249,7 @@ cat notes.txt</code></pre>
 <pre><code>du –sh</code></pre>
 <p><code>du</code> can also give you a breakdown of how much space each file and directory is taking up in your <code>~</code> directory. You can check this by typing:</p>
 <pre><code>du -sh ~/*</code></pre>
+<p><a name="background"></a></p>
 <h2 id="running-background-processes">Running background processes</h2>
 <p>Sometimes a process will continue running indefinitely and not allow you to use the terminal until you stop it. This is especially true if you start a graphical program from the command line, e.g. a web browser.</p>
 <p>To allow you to use the terminal while this process is happening you can use the <code>&amp;</code> operator, to indicate that the process should be a background process. For example, if I run <code>xeyes</code>, but want to keep using the terminal while this program is open I can type:</p>
@@ -288,7 +295,8 @@ cat $file_name | grep $word_name | less</code></pre>
 <p>First, the script should <code>ls</code> the current directory, then ask for us to nominate a file, then for a word to <code>grep</code> for. Finally, this should output all the lines containing our nominated word into <code>less</code>.</p>
 <p>Note that when I called the shell script I had to prefix the script name (<code>grep_file.sh</code>) with <code>./</code>, this is a finicky requirement for all user made scripts. If you really want to know why this is necessary, read <a href="http://www.linfo.org/dot_slash.html">this</a> and <a href="https://www.stackoverflow.com/q/6331075/5622415">this</a>. Warning, very dense and potentially boring.</p>
 <p><a name="download"></a></p>
-<h2 id="downloading-files-from-a-file-server-using-ftp-file-transfer-programprotocol">Downloading files from a file server using <code>ftp</code> (File Transfer Program/Protocol)</h2>
+<h2 id="downloading-files">Downloading files</h2>
+<h3 id="downloading-from-a-file-server-using-ftp-file-transfer-programprotocol">Downloading from a file server using <code>ftp</code> (File Transfer Program/Protocol)</h3>
 <p><code>ftp</code> is a program used to transfer files from one computer to another. This utility could be very useful if you need to grab data from the GeoSciences ftp server (<code>ftp.geos.ed.ac.uk</code>), or from some other server. As an example, let's <code>cd</code> to <code>~/linux_intro/wkzero/downloads</code>:</p>
 <pre><code>cd ~/linux_intro/wkzero/downloads</code></pre>
 <p>The open the <code>ftp</code> program:</p>
@@ -310,7 +318,7 @@ cat $file_name | grep $word_name | less</code></pre>
 <p>Now close the connection using <code>bye</code>:</p>
 <pre><code>bye</code></pre>
 <p>Use <code>ls</code> to check that <code>jefferson.tar.gz</code> is now in our personal directory.</p>
-<h2 id="compressing-and-uncompressing-files">Compressing and uncompressing files</h2>
+<h3 id="compressing-and-uncompressing-files">Compressing and uncompressing files</h3>
 <p>The file we just downloaded (<code>jefferson.tar.gz</code>) came as a compressed binary file. A compressed file takes up less drive space than a raw file, so is ideal for sending data over the network, but we can't do anything with this file until we uncompress it. We know it is a compressed file because the file extension contains <code>.gz</code>. We can use the GunZip program (<code>gzip</code>) to uncompress the file:</p>
 <pre><code>gzip -d jefferson.tar.gz</code></pre>
 <p>Note that the <code>-d</code> flag was used to tell <code>gzip</code> that we want to decompress the file. Now <code>ls</code> to see that <code>jefferson.tar.gz</code> has become <code>jefferson.tar</code>.</p>
@@ -321,7 +329,7 @@ cat $file_name | grep $word_name | less</code></pre>
 <pre><code>zip jefferson.zip jefferson.txt</code></pre>
 <p>The following unzips the contents of <code>jefferson.zip</code> and places it in a directory called <code>jefferson_2</code></p>
 <pre><code>unzip jefferson.zip –d jefferson_2</code></pre>
-<h2 id="downloading-files-from-webpages-using-wget-and-curl">Downloading files from webpages using <code>wget</code> and <code>curl</code></h2>
+<h3 id="downloading-files-from-webpages-using-wget-and-curl">Downloading files from webpages using <code>wget</code> and <code>curl</code></h3>
 <p>It is becoming more common to download data from hosted webpages rather than from dedicated ftp file servers. You can download from webpages using two programs, <code>curl</code> or <code>wget</code>. Both do largely the same thing but offer some different advanced functions that we won't get into today. Just be aware that they exist and are useful for different tasks. For now, we can download some data from the GeoSciences website:</p>
 <pre><code>cd ~/linux_intro/wkzero/downloads
 
@@ -330,6 +338,7 @@ curl http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols.txt -o protocols.txt
 wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
 <p>The <code>-r</code> flag in <code>wget</code> downloads all the linked webpages inside the file specified for download as well as that file.</p>
 <p>Use <code>ls</code> to check that the files were downloaded correctly into <code>~/linux_intro/wkzero/downloads</code>.</p>
+<p><a name="printing"></a></p>
 <h2 id="printing-files-from-the-command-line">Printing files from the command line</h2>
 <p>To quickly print a file from the command line you can use the <code>lp</code> suite of commands.</p>
 <p><code>lp file.txt</code> prints <code>file.txt</code></p>
@@ -351,7 +360,15 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
 <h4 id="from-a-geosciences-windows-machine">From a GeoSciences Windows machine</h4>
 <p>Open &quot;NX Connection Wizard&quot; from the Start menu.</p>
 <p>Configure the connection like so:</p>
-<p>&quot;Session&quot; = <code>burn.geos.ed.ac.uk</code> &quot;Host&quot; = <code>burn.geos.ed.ac.uk</code> &quot;Port&quot; = <code>22</code> &quot;Select type of your internet connection.&quot; = <code>ADSL</code> &quot;Client&quot; = <code>Unix</code> &quot;Desktop environment&quot; = <code>KDE</code> - <strong>This can be changed</strong> &quot;Select size of your remote desktop&quot; = <code>Available area</code> - <strong>This can be changed</strong></p>
+<ul class="incremental">
+<li>&quot;Session&quot; = <code>burn.geos.ed.ac.uk</code></li>
+<li>&quot;Host&quot; = <code>burn.geos.ed.ac.uk</code></li>
+<li>&quot;Port&quot; = <code>22</code></li>
+<li>&quot;Select type of your internet connection.&quot; = <code>ADSL</code></li>
+<li>&quot;Client&quot; = <code>Unix</code></li>
+<li>&quot;Desktop environment&quot; = <code>KDE</code> - <strong>This can be changed</strong></li>
+<li>&quot;Select size of your remote desktop&quot; = <code>Available area</code> - <strong>This can be changed</strong></li>
+</ul>
 <p>Then when the login window appears, login with your UUN and the password you use to login to MyEd.</p>
 <h4 id="from-a-personal-windowsmacoslinux-machine">From a personal Windows/macOS/Linux machine</h4>
 <p>Download NoMachine from (https://www.nomachine.com/download)[https://www.nomachine.com/download]</p>
