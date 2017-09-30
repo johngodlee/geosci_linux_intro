@@ -3,16 +3,19 @@
 1. [Introduction](#introduction)
 2. [What is UNIX?](#what)
 3. [The GeoSciences network structure](#network)
-4. [Logging in](#login)
-5. [Basic commands](#basic)
-6. [Scratch space](#scratch)
+4. [Logging in via the command line](#login)
+5. [The basics](#basic)
+6. [Shared resources and Scratch space](#scratch)
 7. [Text editors and pagers](#editors)
-8. [Monitoring processes](#monitor)
-9. [Shell scripting](#scripting)
-10. [Downloading files](#download)
-11. [Using a graphical interface](#gui)
-12. [Even more computing power with `eddie`](#eddie)
-13. [Adding network drives](#net_drive)
+8. [Piping and redirecting data](#pipes)
+9. [Monitoring processes](#monitor)
+10. [Running background processes](#background)
+11. [Shell scripting](#scripting)
+12. [Downloading files](#download)
+13. [Printing in Linux](#printing)
+14. [Using a graphical interface](#gui)
+15. [Adding network drives to a personal computer](#net_drive)
+16. [Even more computing power with `eddie`](#eddie)
 
 
 <a name="introduction"></a>
@@ -116,11 +119,11 @@ Press "Enter", then follow the instructions. When it asks for your password use 
 
 <a name="basic"></a>
 
-## The bash prompt
+## The basics
+
+### The bash prompt
 
 By this point you should be connected to the Linux `burn` server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look something like this:
-
-![](img/prompt.png)
 
 ```
 [s1234567@burn ~]$ ■
@@ -132,8 +135,6 @@ This innocuous line, known as the bash prompt actually tells us some really usef
 - `burn` is the hostname, i.e. the name of the server you are connected to.
 - `~` Is the directory you are currently in, `~` is shorthand for the home directory.
 - `$` marks the end of the bash prompt and the start of the space where you can type commands.
-
-## Basic file system operations from the command line
 
 ### Changing directories
 
@@ -204,6 +205,16 @@ mkdir notes/wk_1
 Notice that I used `/` to create the `wk_1` directory inside an existing directory.
 
 Type `tree` to check that all the directories have been created. `tree` gives a nice overview of the directory structure in the directory you are currently in.
+
+Your tree output should look like this:
+
+```
+.
+├── data
+├── downloads
+└── notes
+    └── wk_1
+```
 
 `cd` into the `notes` directory, then the `wk_1` directory and create an empty file called `notes.txt` like this:
 
@@ -346,6 +357,8 @@ We can then use a "pager" program to quickly open the file and view the text we 
 less notes.txt
 ```
 
+<a name="pipes"></a>
+
 ## Piping and redirecting data
 
 `cd` to the `wkzero` directory that we previously copied from the shared network space into our personal `downloads` directory:
@@ -434,6 +447,7 @@ du –sh
 du -sh ~/*
 ```
 
+<a name="background"></a>
 
 
 ## Running background processes
@@ -534,7 +548,9 @@ Note that when I called the shell script I had to prefix the script name (`grep_
 
 <a name="download"></a>
 
-## Downloading files from a file server using `ftp` (File Transfer Program/Protocol)
+## Downloading files 
+
+### Downloading from a file server using `ftp` (File Transfer Program/Protocol)
 
 `ftp` is a program used to transfer files from one computer to another. This utility could be very useful if you need to grab data from the GeoSciences ftp server (`ftp.geos.ed.ac.uk`), or from some other server. As an example, let's `cd` to `~/linux_intro/wkzero/downloads`:
 
@@ -594,7 +610,7 @@ bye
 
 Use `ls` to check that `jefferson.tar.gz` is now in our personal directory.
 
-## Compressing and uncompressing files
+### Compressing and uncompressing files
 
 The file we just downloaded (`jefferson.tar.gz`) came as a compressed binary file. A compressed file takes up less drive space than a raw file, so is ideal for sending data over the network, but we can't do anything with this file until we uncompress it. We know it is a compressed file because the file extension contains `.gz`. We can use the GunZip program (`gzip`) to uncompress the file:
 
@@ -624,7 +640,7 @@ The following unzips the contents of `jefferson.zip` and places it in a director
 unzip jefferson.zip –d jefferson_2
 ```
 
-## Downloading files from webpages using `wget` and `curl`
+### Downloading files from webpages using `wget` and `curl`
 
 It is becoming more common to download data from hosted webpages rather than from dedicated ftp file servers. You can download from webpages using two programs, `curl` or `wget`. Both do largely the same thing but offer some different advanced functions that we won't get into today. Just be aware that they exist and are useful for different tasks. For now, we can download some data from the GeoSciences website:
 
@@ -639,6 +655,8 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r
 The `-r` flag in `wget` downloads all the linked webpages inside the file specified for download as well as that file.
 
 Use `ls` to check that the files were downloaded correctly into `~/linux_intro/wkzero/downloads`.
+
+<a name="printing"></a>
 
 ## Printing files from the command line
 
@@ -670,13 +688,13 @@ Open "NX Connection Wizard" from the Start menu.
 
 Configure the connection like so:
 
-"Session" = `burn.geos.ed.ac.uk`
-"Host" = `burn.geos.ed.ac.uk`
-"Port" = `22`
-"Select type of your internet connection." = `ADSL`
-"Client" = `Unix`
-"Desktop environment" = `KDE` - __This can be changed__
-"Select size of your remote desktop" = `Available area` - __This can be changed__
+- "Session" = `burn.geos.ed.ac.uk`
+- "Host" = `burn.geos.ed.ac.uk`
+- "Port" = `22`
+- "Select type of your internet connection." = `ADSL`
+- "Client" = `Unix`
+- "Desktop environment" = `KDE` - __This can be changed__
+- "Select size of your remote desktop" = `Available area` - __This can be changed__
 
 Then when the login window appears, login with your UUN and the password you use to login to MyEd.
 
