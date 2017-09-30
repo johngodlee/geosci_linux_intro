@@ -21,14 +21,14 @@
 
 The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.
 
+Unlike the Windows operating system, UNIX based operating systems give much more control to the user. The most common and powerful method of interaction with a UNIX based system is through the command line rather than through a windows-like point and click interface. Additionally, much of the software available on UNIX platforms is free and open source, meaning that everybody has access to the code used to create a piece of software, meaning that you know exactly what the program is doing. Having this amount of control over your computing is very useful in academia where research should be entirely [reproducible and repeatable](http://www.bioone.org/doi/full/10.1641/0006-3568(2006)56%5B958:RARIE%5D2.0.CO%3B2). Using a text interface will also give you a lot more creative power to design analyses the way you like.
+
 Students use the GeoSciences UNIX systems for a variety of tasks, including but not limited to:
 
 - Simulation modelling
 - GIS and mapping
 - Running an email server
 - Statistical programming
-
-Unlike the Windows operating system, UNIX based operating systems give much more control to the user. The most common and powerful method of interaction with a UNIX based system is through the command line rather than through a windows-like point and click interface. Additionally, much of the software available on UNIX platforms is free and open source, meaning that everybody has access to the code used to create a piece of software, meaning that you know exactly what the program is doing. Having this amount of control and knowledge is a very useful attribute in academia where research should be entirely [reproducible and repeatable](LINK).
 
 While this workshop is not designed to be a definitive reference, it should provide a good introduction from which you can continue to learn about this powerful resource.
 
@@ -44,17 +44,14 @@ By the end of this workshop you should be able to:
 
 - Log on to any UNIX machine in the School of GeoSciences
 - Locate your home directory
-- View a file list using `ls`
-- Change directories using `cd`
-- Create directories using `mkdir`
-- Copy, move, rename and delete files and directories using `cp`, `mv`, `rm`
-- View plain text files in a number of different ways
-- Find help on commands/programs using `man` and help on the web
+- Perform simple file operations on the command line using, `ls`, `cd`, `mkdir`, `cp`, `mv`, `rm`
+- View plain text files in a number of different ways using pagers and editors
+- Find help on commands/programs using `man` pages
 - Download and retrieve data via FTP
 - Monitor memory usage, and find out about other users on the system using `finger`, `ps`, `kill`
 - Search within files using `grep`
-- Start full UNIX applications and understand about different types of application
-- Connect to different machines using `ssh`
+- Connect to the GeoSciences Linux server using a graphical client
+- Map GeoSciences network drives on your personal computer
 - Tell other people how awesome UNIX is
 
 <a name="what"></a>
@@ -75,7 +72,7 @@ There are three main ways to access systems running Linux in the School of GeoSc
 - Login to a GeoSciences Windows machine and connect to a Linux server remotely
 - Login to a Linux server remotely from your personal computer, when connected to the University VPN
 
-By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal laptop is becoming more popular.
+By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal computer or laptop is becoming more popular.
 
 ![](img/net_struc.png)
 
@@ -90,21 +87,21 @@ Most of the tasks you will need to use a Linux server for can be achieved throug
 Choose your method of connecting to the GeoSciences Linux server from the options below and follow the instructions in that section.
 
 #### Logging in from a GeoSciences Windows machine
-To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a terminal interface to allow connecting to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
+To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a command line interface to allow you to connect remotely to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
 
-First, open PuTTY and configure the PuTTY session. `burn` is the name of the GeoSciences Linux server, it's address is `burn.geos.ed.ac.uk`:
+First, open PuTTY and configure the PuTTY session using the instructions below. `burn` is the name of the GeoSciences Linux server, it's address is `burn.geos.ed.ac.uk`:
 
-"Host Name (or IP address)" = `burn.geos.ed.ac.uk`
-"Port" = `22`
-"Connection type:" = `SSH`
-In "Category: Connection, SSH" Check `Enable X11 forwarding` - which allows X window applications to be opened on your desktop (e.g. `xeyes`)
+- "Host Name (or IP address)" = `burn.geos.ed.ac.uk`
+- "Port" = `22`
+- "Connection type:" = `SSH`
+- In "Category: Connection, SSH" Check `Enable X11 forwarding` - which allows X window applications to be opened on your desktop (e.g. `xeyes`)
 
 Then click "Open" to start the connection, type your UUN (e.g. `s1234567`) and the password you use to login to MyEd, Windows machines etc.
 
 #### From a personal Windows machine
-You can also use PuTTY on your own windows machine, you can download it from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
+You can also use PuTTY from your own windows machine, you can download it from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
-Make sure you are connected to the University VPN service ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)), then open PuTTY and connect using the same options as for a GeoSciences Windows machine.
+Make sure you are connected to the University VPN service ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)), then open PuTTY and connect using the same options as the ones above for a GeoSciences Windows machine.
 
 #### From a personal macOS/Linux machine
 If you have a personal macOS or Linux machine you can use a terminal emulator such as `Terminal.app` to connect to a University Linux server.
@@ -112,15 +109,16 @@ If you have a personal macOS or Linux machine you can use a terminal emulator su
 Open `Terminal.app` or your terminal emulator of choice and type the following, replacing `s1234567` with your own UUN:
 
 ```
-ssh -X s1234567@burn.geos.ed.ac.uk
+ssh -x s1234567@burn.geos.ed.ac.uk
 ```
 
 Press "Enter", then follow the instructions. When it asks for your password use the one you use to login to MyEd, don't worry if the password doesn't look like it's being typed, the computer is just trying to keep your details secret!
 
 <a name="basic"></a>
 
-## The Linux folder structure
-By this point you should be connected to the Linux burn server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look like this:
+## The bash prompt
+
+By this point you should be connected to the Linux `burn` server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look something like this:
 
 ![](img/prompt.png)
 
@@ -128,16 +126,18 @@ By this point you should be connected to the Linux burn server using whatever me
 [s1234567@burn ~]$ ■
 ```
 
-This innocuous line, known as the bash prompt actually tells us some useful information:
+This innocuous line, known as the bash prompt actually tells us some really useful information:
 
-- `s1234567` is obviously your UUN
-- `burn` is the hostname, i.e. the name of the server you are connected to
-- `~` Is the directory you are currently in, `~` is shorthand for the home directory
-- `$` marks the end of the bash prompt and the start of the space where you can type commands
+- `s1234567` is obviously your UUN.
+- `burn` is the hostname, i.e. the name of the server you are connected to.
+- `~` Is the directory you are currently in, `~` is shorthand for the home directory.
+- `$` marks the end of the bash prompt and the start of the space where you can type commands.
 
 ## Basic file system operations from the command line
 
 ### Changing directories
+
+Before we continue, it's important to note that the word "directory" is used in the Unix literature to mean the same thing as "folder" on a Windows machine.
 
 To see what directories and files are inside the current directory type:
 
@@ -145,7 +145,7 @@ To see what directories and files are inside the current directory type:
 ls
 ```
 
-followed by the <Enter> key. All commands must be followed by the <Enter> key to run them.
+followed by the <Enter> key. All commands must be followed by the <Enter> key to run them. The `ls` command should output a list of the directories and files inside the `~` directory, because that is the directory we are currently in. 
 
 To change to another directory, type `cd` then the directory name. List the directories in your current directory using `ls` then pick one and change to it:
 
@@ -155,11 +155,11 @@ ls
 cd Documents
 ```
 
-Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the `Documents` directory. Enter `ls` again to see that the list of files has also changed, because you are in a different directory.
+Notice that the `~` in the prompt has been replaced with `Documents`, telling us we are now in the `Documents` directory. Enter `ls` again to see that the list of files and directories has also changed, because you are in a different directory.
 
-The `~` (tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to the `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. The `home` directory default size is quite small, but can be increased if you need extra space for your research. As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is hardly any chance of losing your data when it is stored in this directory.
+The `~` (tilde character) is shorthand for the `home` directory. When you log into a Linux system you will automatically be taken to the `home` directory. The `home` directory is analogous to your `M:` drive on a Windows machine. It is a space where you can store personal files that only you can access. The `home` directory default size is quite small, but can be increased if you need extra space for your research, just [email IS services](mailto:is.helpline@ed.ac.uk). As an added bonus the `~`/`home`/`M:` directory is backed up every night, so there is hardly any chance of losing your data when it is stored in this directory.
 
-To move up one directory e.g. from `Documents` back to the home directory, type:
+To move up one directory e.g. from `Documents` back to the `home` directory, type:
 
 ```
 cd ..
@@ -177,7 +177,7 @@ Try this out by `cd`ing into a directory of your choice, then jumping back to th
 
 ### Creating directories and files
 
-To demonstrate some of the simple file operations that you can perform from the command line, return to the home folder (`cd`) and make a new directory called `linux_intro` like this:
+Just like on a Windows machine, it will be necessary to perform various file operations during your work like moving files, making directories etc. But instead of using a drag and drop interface like on Windows, on `burn` you can use the command line. To demonstrate some of the simple file operations that you can perform from the command line, return to the home folder (`cd`) and make a new directory called `linux_intro` like this:
 
 ```
 mkdir linux_intro
@@ -213,9 +213,9 @@ cd ~/linux_intro/notes/wk_1
 touch notes.txt
 ```
 
-Notice how instead of using the relative filepath to move into the `wk_1` directory (e.g. `cd wk_1`), this time I used the full filepath (`~/linux_intro/notes/wk_1`) because I was too far away from the `wk_1` directory for Linux to know what I was talking about.
+Notice how instead of using the relative filepath to move into the `wk_1` directory (e.g. `cd wk_1`), this time I used the full filepath (`~/linux_intro/notes/wk_1`) because `wk_1` isn't directly below my current directory so Linux wouldn't have known which directory I meant.
 
-Move back to the `linux_intro` folder and check out the new directory structure you have made by typing:
+Move back to the `linux_intro` directory and check out the new directory structure you have made by typing:
 
 ```
 cd ../..
@@ -223,10 +223,9 @@ cd ../..
 tree
 ```
 
-The output should look like this:
+The output of `tree` should look something like this:
 
 ![](tree.png)
-
 
 ### Moving files and directories
 
@@ -244,7 +243,7 @@ cd
 mv notes.txt ~/Documents/notes.txt
 ```
 
-`mv` can also be used to rename files:
+Because `notes.txt` isn't a particularly informative filename, I can also use `mv` to rename files:
 
 ```
 cd ~/Documents
@@ -274,7 +273,7 @@ cd ~/linux_intro
 rm -r data
 ```
 
-Flags can be added to many commands to change their behaviour or add special inputs. Another command you can add to `rm` is the `-i` flag, which asks the user whether they really want to delete the file before deleting it, which is very useful __because `rm` deletes files irreversibly!__ I could delete `~/Documents/linux_notes.txt` using the `-i` flag:
+Flags can be added to many commands to change their behaviour or add special inputs. A useful flag for the `rm` command is `-i`, which asks the user whether they really want to delete the file before deleting it. Once again, the reason this is useful is because __`rm` deletes files irreversibly!__ I could delete `~/Documents/linux_notes.txt` using the `-i` flag:
 
 ```
 rm -i ~/Documents/linux_notes.txt
@@ -286,8 +285,11 @@ To find out about other flags and their uses you can use the `man` command follo
 man rm
 ```
 
+It's also worth remembering that a quick internet search for a command followed by the word "Linux" or a brief description of your problem will almost definitely yield useful results.
+
 ### Shared resources
-As well as your personal data stored in the `home` directory, you can access shared data in the `/geos` folder. This might be the data for a specific course like the Kindrogan field course, or open access data such as shapefiles for Scotland's roads.
+
+As well as your personal data stored in the `home` directory, you can access shared data in the `/geos` directory. This might be the data for a specific course like the Kindrogan field course, or open access data such as shapefiles for Scotland's roads.
 
 Move to the `/geos` directory like this:
 
@@ -295,9 +297,9 @@ Move to the `/geos` directory like this:
 cd /geos
 ```
 
-It is important to note that while you can open files in the shared space, it is unlikely that you will have permission to edit them. Instead you can copy them to your `home` folder using `cp` to have an editable copy.
+It is important to note that while you can open files in the shared space, it is unlikely that you will have permission to edit them. Instead you can copy them to your `home` directory using `cp` to have an editable copy.
 
-Try this by copying the contents of the `/geos/netdata/wkzero` directory to the `~/linux_intro/downloads` folder:
+Try this by copying the contents of the `/geos/netdata/wkzero` directory to the `~/linux_intro/downloads` directory:
 
 ```
 cd /geos/netdata
@@ -308,7 +310,9 @@ cp -r wkzero/ ~/linux_intro/downloads
 Notice how I had to add the `-r` flag to let `cp` know that I wanted to copy a directory instead of a file. Also note the `/` I used to specify that `wkzero` is a directory, not a file.
 
 <a name="scratch"></a>
+
 ### Scratch space
+
 Another shared space that will be useful is `/scratch/s1234567`, obviously your scratch space will be named after your UUN. Scratch space offers a very large amount of temporary storage space. It is not backed up so don't leave anything important on there for too long, but it could be useful if you want somewhere to unpack a huge dataset, or create lots of model objects.
 
 To move to your scratch space just type the following, switching out `s1234567` with your own UUN:
@@ -318,15 +322,17 @@ cd /scratch/s1234567
 ```
 
 <a name="editors"></a>
+
 ## Text editors and pagers
-Our notes file (`~/linux_intro/notes/notes.txt`) is still a blank file. Let's fill it with some notes. There are a multitude of terminal based text editors available on the GeoSciences Linux systems. It is often much quicker to edit a text file in the Linux server environment rather than edit it on a Windows machine and copy it across every time you make a change. Some notable text editors, in my own order from most to least complex are:
+
+Our notes file (`~/linux_intro/notes/notes.txt`) is still a blank file. Let's fill it with some notes. There are a multitude of terminal based text editors available on the GeoSciences Linux systems. It is often much quicker to edit a text file in the Linux server environment on the command line rather than edit it on a Windows machine and copy it across every time you make a change. Some notable text editors, in my own order from most to least complex are:
 
 - `emacs`
 - `vim`
 - `ed`
 - `nano`
 
-Move to the directory where `notes.txt` is found, then open up `notes.txt` file using `nano`, type some text then save and exit using `Ctrl-x`.
+Move to the directory where `notes.txt` is found, then open the `notes.txt` file using `nano`, type some text then save and exit using `Ctrl-x`.
 
 ```
 cd ~/linux_intro/notes/wk_1
@@ -334,8 +340,7 @@ cd ~/linux_intro/notes/wk_1
 nano notes.txt
 ```
 
-We can then use a "pager" program to quickly open up the file to view the text we just created. Pagers are different from text editors in that they can't be used to edit text, only view it. The advantage of pagers is they are often very quick to open and provide a quicker way of skimming through a document. Use the `less` pager to read the text you just typed using the code below, then type `q` to exit and return to the terminal:
-:
+We can then use a "pager" program to quickly open the file and view the text we just wrote. Pagers are different from text editors in that they can't be used to edit text, only view it. The advantage of pagers is they are often very quick to open and provide a quick way of skimming through a document. Use the `less` pager to read the text you just typed using the code below, then type `q` to exit and return to the terminal:
 
 ```
 less notes.txt
@@ -343,7 +348,7 @@ less notes.txt
 
 ## Piping and redirecting data
 
-`cd` to the `wkzero` directory that we previously copied from the shared network space into our personal `downloads` folder:
+`cd` to the `wkzero` directory that we previously copied from the shared network space into our personal `downloads` directory:
 
 ```
 cd ~/linux_intro/downloads/wkzero
@@ -357,13 +362,13 @@ ls
 less jabberwock.txt
 ```
 
-We can redirect the contents of one file into another using the `>` operator. `>` takes what ever is on the left hand side and puts it into the file on the right hand side. We can add the contents of `jabberwock.txt` to `~/linux_intro.txt` like this:
+We can redirect the contents of one file into another using the `>` operator. `>` takes what ever is on the left hand side and puts it into the file on the right hand side. We can add the contents of `jabberwock.txt` to `notes.txt` like this:
 
 ```
 cat jabberwock.txt > ~/linux_intro/notes/wk_1/notes.txt
 ```
 
-`cat` merely prints the contents of the file it is given, in this case `jabberwock.txt`. Hopefully you can imagine that the `>` would be very useful for stringing commands together to manipulate data, then put the output into a text document, much quicker than copying and pasting with a mouse.
+`cat` merely prints the contents of the file it is given, in this case `jabberwock.txt`, think of `cat` as the most simplistic pager. Hopefully you can imagine that the `>` would be very useful for stringing commands together to manipulate data, then put the output into a text document, much quicker than copying and pasting with a mouse.
 
 After you have done the above, check that `notes.txt` contains the new information using cat:
 
@@ -393,7 +398,7 @@ But I want to find only the lines that have information about "Canada". I can us
 cat nation_data.txt | grep "Canada" | less
 ```
 
-Just to recap, I took the contents of `nation_data.txt` (`cat nation_data.txt`), then fed that to the grep command to look only for lines containing the word `Canada` (`grep Canada`), then fed the filtered lines to `less`, my pager of choice. It's easy to see how this could become a useful tool for quickly sifting through data to look for the interesting bits.
+Just to recap, I took the contents of `nation_data.txt` (`cat nation_data.txt`), then fed that to the grep command to look only for lines containing the word `Canada` (`grep Canada`), then fed the filtered lines to `less`, my pager of choice. It's easy to see how this could become a really powerful tool for quickly sifting through data to look for the interesting bits.
 
 `grep` can take many different types of arguments, I recommend reading the `man` page for `grep` or look at some online tutorials to see what it can really do.
 
@@ -401,7 +406,7 @@ Just to recap, I took the contents of `nation_data.txt` (`cat nation_data.txt`),
 
 ## Monitoring processes
 
-On the GeoSciences Linux servers it is quite likely that other users will be working at the same time as you. You can see what everybody else is doing, and everybody else can see what you are doing. It is useful to know what processes you have running so that you can terminate processes, or manage your memory usage. It might also be useful to see what other people are doing that is using up all the memory on the server, making your programs run slowly.
+On the GeoSciences Linux servers it is quite likely that other users will be working at the same time as you. You can see what everybody else is doing, and everybody else can see what you are doing. It is useful to know what processes you have running so that you can terminate processes, or manage your memory usage. It might also be useful to see what other people are doing that is using up all the memory on the server, making your programs run slowly!
 
 To see what other users are doing, use the `ps` command. Additionally, we will use the `-a` flag to show everybodys processes and `-f` flag to show the full amount of information for each process:
 
@@ -411,9 +416,29 @@ ps -af
 
 This spits out a whole load of information. The most important columns are `UID` which shows the username of who is running each process (try to find your username in the list), `PID` is the ID number of the process, which you can use in other commands which you will learn about soon, and finally the `CMD` column, which shows what the process is.
 
+Every user on `burn` is allocated a limited amount of memory for their operations. To check your usage you can use the following:
+
+```
+quota -s
+```
+
+Similarly, every user is given an amount of disk space to store files. You can check your disk usage by typing:
+
+```
+du –sh
+```
+
+`du` can also give you a breakdown of how much space each file and directory is taking up in your `~` directory. You can check this by typing:
+
+```
+du -sh ~/*
+```
+
+
+
 ## Running background processes
 
-Sometimes a process will continue running indefinitely until you stop it. This is especially true if you start a GUI program from the command line, e.g. a web browser.
+Sometimes a process will continue running indefinitely and not allow you to use the terminal until you stop it. This is especially true if you start a graphical program from the command line, e.g. a web browser.
 
 To allow you to use the terminal while this process is happening you can use the `&` operator, to indicate that the process should be a background process. For example, if I run `xeyes`, but want to keep using the terminal while this program is open I can type:
 
@@ -421,9 +446,9 @@ To allow you to use the terminal while this process is happening you can use the
 xeyes &
 ```
 
-This will give the process ID number (`PID`) that is displayed in the terminal and then let me continue to use the terminal.
+This will give the process ID number (`PID`) of the command and then let me continue to use the terminal.
 
-Run `xeyes &` then run `ps -af` to see if you can find the process in the list. If you are feeling brave, you could use the `grep` command from earlier to find only the lines with your username (`UID`):
+Run `xeyes &` then run `ps -af` to see if you can find the process in the list, the `PID` shuld be the same as the one you were shown in the terminal when you typed the command. If you are feeling brave, you could use the `grep` command from earlier to find only the lines with your username (`UID`):
 
 ```
 ps -af | grep "s1234567"
@@ -437,13 +462,13 @@ kill -9 <PID>
 
 Where <PID> is the ID number that I was presented with earlier in the terminal when I first started the `xeyes` program.
 
-It is useful to know that if you run a program in the background by usign the `&` operator, you can `exit` from your remote session and the program will continue to run, even though you're not there. This could be very useful if you have a huge data crunching program running and you want to go home and sleep.
+It is useful to know that if you run a program in the background by using the `&` operator, you can use the `exit` command to end your remote session and the program will continue to run, even though you're not there or connected to `burn`. This could be very useful if you have a huge data crunching program running and you want to go home and sleep.
 
 <a name="scripting"></a>
 
 ## Shell scripting
 
-As you start to learn terminal commands and do more computing in the Linux environment you may find that you perform the same set of actions over and over. For example, if you get regular data files sent to you from some distant fieldsite, you may want to manipulate that data in the same way every time. Shell scripting allows you to save a set of commands for later use. Let's make a script that allows us to `grep` for lines containing a given word in the the `nation_data.txt` file and any other file in the future. `cd` to the `home` directory and open the `nano` text editor:
+As you start to learn terminal commands and do more computing in the Linux environment you may find that you perform the same set of actions over and over. For example, if you get regular data files sent to you from some distant fieldsite, you may want to manipulate that data in the same way every time. Shell scripting allows you to save a set of commands for later use. Let's make a script that allows us to `grep` for lines containing a given word in the `nation_data.txt` file and any other file in the future. `cd` to the `home` directory and open the `nano` text editor:
 
 ```
 cd
@@ -451,23 +476,15 @@ cd
 nano
 ```
 
-Shell scripts should always start with the following code:
+Shell scripts should always start with the following code, also known as a "shebang":
 
 ```
 #!/bin/bash
 ```
 
-This tells the operating system that we are using the `bash` language, which is the language we have been using this whole time! Google if you are interested in learning more about `bash`.
+This tells the operating system that we are using the `bash` language, which is the language we have been using this whole time to interact with the Linux server! Google if you are interested in learning more about `bash`.
 
-On the next line we will automatically show the files in the current folder using `ls`.
-
-Then on the next line we will prompt the user for the name of a file from that list of files.
-
-On the next line we will prompt the user for a word that they want to search for
-
-And finally we will use include all these variables into a command that searches our nominated file for our nominated word and display it in `less`.
-
-Your script should look like this:
+Copy the following into nano to create a script that look like this:
 
 ```
 #!/bin/bash
@@ -481,14 +498,22 @@ read -p 'Word to search for: ' word_name
 cat $file_name | grep $word_name | less
 ```
 
-Save the file to `~/grep_file`.
+On the line after the shebang we have asked to show the files in the current directory using `ls`.
+
+Then on the next line we use `read -p` to prompt the user for the name of a file from that list of files.
+
+On the next line we prompt the user for a word that they want to search for.
+
+And finally we include all these variables into a command that searches our nominated file for our nominated word and display it in `less`. The variables we created earlier in the script (`word_name`, `file_name`) can be called later in the script by prefixing their name with a `$` (`$word_name`, `$file_name`)
+
+Save the file to `~/grep_file.sh`. The `.sh` file extension stands for `sh`ell.
 
 To get the script to run as a script and not just a text file we need to make it "executable".
 
 In the terminal type:
 
 ```
-chmod +x ~/grep_file
+chmod +x ~/grep_file.sh
 ```
 
 To test that the script works, `cd` into the `wkzero` directory:
@@ -500,12 +525,12 @@ cd ~/linux_intro/downloads/wkzero
 Then enter:
 
 ```
-~/./grep_file
+~/./grep_file.sh
 ```
 
 First, the script should `ls` the current directory, then ask for us to nominate a file, then for a word to `grep` for. Finally, this should output all the lines containing our nominated word into `less`.
 
-Note that when I called the shell script I had to prefix the script name (`grep_file`) with `./`, this is a finicky requirement for all user made scripts. If you really want to know why this is necessary, read [this](http://www.linfo.org/dot_slash.html) and [this](https://www.stackoverflow.com/q/6331075/5622415). Warning, very dense and boring.
+Note that when I called the shell script I had to prefix the script name (`grep_file.sh`) with `./`, this is a finicky requirement for all user made scripts. If you really want to know why this is necessary, read [this](http://www.linfo.org/dot_slash.html) and [this](https://www.stackoverflow.com/q/6331075/5622415). Warning, very dense and potentially boring.
 
 <a name="download"></a>
 
@@ -533,7 +558,7 @@ open ftp.geos.ed.ac.uk
 
 As requested when you connect, type `anonymous` as your name.
 
-Again as requested, enter your email address as your password.
+Again as requested, enter your university email address (e.g. `s1234567@sms.ed.ac.uk`) as your password.
 
 As in a normal Linux environment, we can list the files in the current directory:
 
@@ -541,13 +566,13 @@ As in a normal Linux environment, we can list the files in the current directory
 ls
 ```
 
-`cd` to the `pub/geos` folder:
+`cd` to the `pub/geos` directory:
 
 ```
-cd pub/geos/wkzero folder
+cd pub/geos/wkzero
 ```
 
-`ls` to see what files are in this folder:
+`ls` to see what files are in this directory:
 
 ```
 ls
@@ -567,11 +592,11 @@ Now close the connection using `bye`:
 bye
 ```
 
-Use `ls` to see that `jefferson.tar.gz` is now in our personal directory.
+Use `ls` to check that `jefferson.tar.gz` is now in our personal directory.
 
 ## Compressing and uncompressing files
 
-The file we just downloaded (`jefferson.tar.gz`) came as a compressed binary file. A compressed file takes up less file than a raw file, so is ideal for sending data over the network, but we can't do anything with this file until we uncompress it. We know it is a compressed file because the file extension is contains `.gz`. We can use the GunZip program (`gzip`) to uncompress the file into a useful one:
+The file we just downloaded (`jefferson.tar.gz`) came as a compressed binary file. A compressed file takes up less drive space than a raw file, so is ideal for sending data over the network, but we can't do anything with this file until we uncompress it. We know it is a compressed file because the file extension contains `.gz`. We can use the GunZip program (`gzip`) to uncompress the file:
 
 ```
 gzip -d jefferson.tar.gz
@@ -587,23 +612,21 @@ tar -xf jefferson.tar
 
 The `-x` flag tells `tar` that we want to extract files from an archive. The `-f` flag tells `tar` that we will provide a filename as the archive to extract from.
 
-If you encounter `.zip` files instead of `.tar` files you can use the `zip` and `unzip` programs to compress and uncompress them, respectively:
+If you encounter `.zip` files instead of `.tar` files you can use the `zip` and `unzip` programs to compress and uncompress them. The following compresses `jefferson.txt` into `jefferson.zip`:
 
 ```
 zip jefferson.zip jefferson.txt
 ```
 
-Compresses `jefferson.txt` into `jefferson.zip`
+The following unzips the contents of `jefferson.zip` and places it in a directory called `jefferson_2`
 
 ```
 unzip jefferson.zip –d jefferson_2
 ```
 
-Unzips the contents of `jefferson.zip` and places it in a folder called `jefferson_2`
-
 ## Downloading files from webpages using `wget` and `curl`
 
-It is becoming more common to download data from hosted webpages rather than from dedicated file servers. You can do this using two programs, either `curl` or `wget`. Both do largely the same thing, but offer some different advanced functions that we won't get into today. Just be aware that they exist and are useful for different tasks. For now, we can download some data from the GeoSciences website:
+It is becoming more common to download data from hosted webpages rather than from dedicated ftp file servers. You can download from webpages using two programs, `curl` or `wget`. Both do largely the same thing but offer some different advanced functions that we won't get into today. Just be aware that they exist and are useful for different tasks. For now, we can download some data from the GeoSciences website:
 
 ```
 cd ~/linux_intro/wkzero/downloads
@@ -615,15 +638,19 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r
 
 The `-r` flag in `wget` downloads all the linked webpages inside the file specified for download as well as that file.
 
+Use `ls` to check that the files were downloaded correctly into `~/linux_intro/wkzero/downloads`.
+
 ## Printing files from the command line
 
 To quickly print a file from the command line you can use the `lp` suite of commands.
 
 `lp file.txt` prints `file.txt`
 
-`lpq` shows your print queue
+`lpq` shows your print queue. Notice that each print job is given a job number.
 
-`lprm file.txt` removes `file.txt` from the queue
+`lprm 23456` removes job number `23456` from the queue.
+
+Once you have used `lp` to print a file, you can go to any GeoSciences printer and print the file on A4 paper as from a Windows machine.
 
 <a name="gui"></a>
 
@@ -632,6 +659,10 @@ To quickly print a file from the command line you can use the `lp` suite of comm
 Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:
 
 ![](img/gui.png)
+
+Log on to `burn` using a graphical interface using one of the methods below, then have a look around the desktop, you will see some applications that are familiar from the Windows machines, and some new applications. Also notice that you can open a command line interface and interact with the server just as you did earlier on in the workshop by clicking the button of the black computer screen:
+
+![](img/gui_term.png)
 
 #### From a GeoSciences Windows machine
 
@@ -671,25 +702,9 @@ Select "Don't use a proxy"
 
 Give the connection a sensible name
 
-Connect to the newly created connection and select a desktop environment such as `KDE`.
+Connect to the newly created connection and select a desktop environment such as `KDE`. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.
 
-When prompted for a password use the password you use to login to MyEd
-
-<a name="eddie"></a>
-
-## Logging onto the University of University cluster computer - `eddie`
-
-While `burn.geos.ed.ac.uk` is great for relatively light activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in `burn` is just not enough. This lack of processing power becomes especially apparent when many people are using `burn` at the same time.
-
-If you find you need the extra computing power you can freely use the University of Edinburgh cluster computer, nicknamed `eddie`. To log on, first login to `burn` using your chosen method, then in the terminal window type:
-
-```
-ssh eddie
-```
-
-wiki.ed.ac.uk/display/ResearchServices/Quickstart
-
-To submit scripts to eddie you must submit them as a `jobscript`.
+When prompted for a password use the password you use to login to MyEd.
 
 <a name="net_drive"></a>
 
@@ -746,3 +761,21 @@ You can use the same method as above to add the "Research DataStore", which give
 ```
 
 replacing `s1234567` with your own UUN.
+
+<a name="eddie"></a>
+
+## Logging onto the University of Edinburgh cluster computer - `eddie`
+
+While `burn.geos.ed.ac.uk` is great for relatively light computing activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in `burn` is just not enough. This lack of processing power becomes especially apparent when many people are using `burn` at the same time.
+
+If you find you need the extra computing power you can freely logon to the University of Edinburgh cluster computer, nicknamed `eddie`. To log on, first login to `burn` using your chosen method from the ones we covered earlier, then in a terminal window type:
+
+```
+ssh eddie
+```
+
+wiki.ed.ac.uk/display/ResearchServices/Quickstart
+
+To submit scripts to eddie you must submit them as a `jobscript`.
+
+### Hopefully this workshop has informed you of some of the useful things you can do with the GeoSciences Linux computing environment and encouraged you to think about how this powerful technology could improve your research while at the University of Edinburgh.
