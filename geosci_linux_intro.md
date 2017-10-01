@@ -805,3 +805,51 @@ To submit scripts to eddie you must submit them as a `jobscript`.
 
 ### Hopefully this workshop has informed you of some of the useful things you can do with the GeoSciences Linux computing environment and encouraged you to think about how this powerful technology could improve your research while at the University of Edinburgh.
 
+
+<style type="text/css">
+.tg {border-collapse:collapse;border-spacing:0}
+.tg th{border-style:solid;border-width:1px;word-break:normal}
+</style>
+<table class="tg">
+	<tr>
+		<th>Command</th>
+		<th>Function</th>
+		<th>Example(s)</th>
+	</tr>
+	<tr>
+		<th>`ls`</th>
+		<th>List files/directories in the current directory</th>
+		<th>ls</th>
+	</tr>
+	<tr>
+		<th>`cd`</th>
+		<th>Change the directory</th>
+		<th>cd Desktop<br>cd ~/Desktop/GIS<br>cd ..</th>
+	</tr>
+	<tr>
+		<th>`cp`</th>
+		<th>Copy a file/directory</th>
+		<th>cp file.txt ~/Desktop/file.txt<br>cp file.txt file_2.txt<br>cp GIS/ ~/Desktop/GIS_2</th>
+	</tr>
+	<tr>
+		<th>`mv`</th>
+		<th>Move a file/directory</th>
+		<th>mv file.txt ~/Desktop/file.txt<br>mv file.txt file_2.txt<br>mv GIS/ ~/Desktop/GIS</th>
+	</tr>
+	<tr>
+		<th>`mkdir`</th>
+		<th>Make a new directory</th>
+		<th>mkdir ~/Desktop/GIS</th>
+	</tr>
+	<tr>
+		<th>`pwd`</th>
+		<th>Get the current directory</th>
+		<th>pwd</th>
+	</tr>
+	<tr>
+		<th>`rm`</th>
+		<th>Remove a file/directory</th>
+		<th>rm file.txt<br>rm -r ~/Desktop/GIS</th>
+	</tr>
+</table>
+
