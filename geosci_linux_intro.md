@@ -79,7 +79,7 @@ There are three main ways to access systems running Linux in the School of GeoSc
 
 By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal computer or laptop is becoming more popular.
 
-<center> <img src="img/net_struc.png" style="width: 650px;"/> </center>
+<center> <img src="img/net_struc.png" style="width: 500px;"/> </center>
 
 <a name="login"></a>
 
@@ -87,7 +87,7 @@ By far the most common way to access Linux is to use a GeoSciences Windows machi
 
 Most of the tasks you will need to use a Linux server for can be achieved through a command line interface like the one in the picture below:
 
-<center> <img src="img/cli.png" style="width: 650px;"/> </center>
+<center> <img src="img/cli.png" style="width: 400px;"/> </center>
 
 Choose your method of connecting to the GeoSciences Linux server from the options below and follow the instructions in that section.
 
@@ -683,11 +683,11 @@ Once you have used `lp` to print a file, you can go to any GeoSciences printer a
 
 Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:
 
-<center> <img src="img/gui.png" style="width: 650px;"/> </center>
+<center> <img src="img/gui.png" style="width: 500px;"/> </center>
 
 Log on to `burn` using a graphical interface using one of the methods below, then have a look around the desktop, you will see some applications that are familiar from the Windows machines, and some new applications. Also notice that you can open a command line interface and interact with the server just as you did earlier on in the workshop by clicking the button of the black computer screen:
 
-<center> <img src="img/gui_term.png" style="width: 650px;"/> </center>
+<center> <img src="img/gui_term.png" style="width: 500px;"/> </center>
 
 #### From a GeoSciences Windows machine
 

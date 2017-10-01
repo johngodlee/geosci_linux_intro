@@ -1,4 +1,5 @@
-<h1 id="table-of-contents">Table of Contents:</h1>
+<h1 id="linux-in-geosciences">Linux in GeoSciences</h1>
+<h2 id="table-of-contents">Table of Contents:</h2>
 <ol class="incremental" style="list-style-type: decimal">
 <li><a href="#introduction">Introduction</a></li>
 <li><a href="#what">What is UNIX?</a></li>
@@ -18,7 +19,7 @@
 <li><a href="#eddie">Even more computing power with <code>eddie</code></a></li>
 </ol>
 <p><a name="introduction"></a></p>
-<h1 id="linux-in-geosciences">Linux in GeoSciences</h1>
+<h2 id="introduction">Introduction</h2>
 <p>The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.</p>
 <p>Unlike the Windows operating system, UNIX based operating systems give much more control to the user. The most common and powerful method of interaction with a UNIX based system is through the command line rather than through a windows-like point and click interface. Additionally, much of the software available on UNIX platforms is free and open source, meaning that everybody has access to the code used to create a piece of software, meaning that you know exactly what the program is doing. Having this amount of control over your computing is very useful in academia where research should be entirely <a href="http://www.bioone.org/doi/full/10.1641/0006-3568(2006)56%5B958:RARIE%5D2.0.CO%3B2">reproducible and repeatable</a>. Using a text interface will also give you a lot more creative power to design analyses the way you like.</p>
 <p>Students use the GeoSciences UNIX systems for a variety of tasks, including but not limited to:</p>
@@ -59,19 +60,17 @@
 <li>Login to a Linux server remotely from your personal computer, when connected to the University VPN</li>
 </ul>
 <p>By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal computer or laptop is becoming more popular.</p>
-<div class="figure">
-<img src="img/net_struc.png" />
-
-</div>
+<center>
+<img src="img/net_struc.png" style="width: 650px;"/>
+</center>
 <p><a name="login"></a></p>
 <h2 id="logging-in-to-the-geosciences-linux-servers-via-the-command-line">Logging in to the GeoSciences Linux servers via the command line</h2>
 <p>Most of the tasks you will need to use a Linux server for can be achieved through a command line interface like the one in the picture below:</p>
-<div class="figure">
-<img src="img/cli.png" />
-
-</div>
+<center>
+<img src="img/cli.png" style="width: 650px;"/>
+</center>
 <p>Choose your method of connecting to the GeoSciences Linux server from the options below and follow the instructions in that section.</p>
-<h4 id="logging-in-from-a-geosciences-windows-machine">Logging in from a GeoSciences Windows machine</h4>
+<h3 id="logging-in-from-a-geosciences-windows-machine">Logging in from a GeoSciences Windows machine</h3>
 <p>To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a command line interface to allow you to connect remotely to other machines. The PuTTY application is located at: <code>U:\SCE\GEOS\putty.exe</code>. I recommend making a shortcut to it and putting it on your desktop.</p>
 <p>First, open PuTTY and configure the PuTTY session using the instructions below. <code>burn</code> is the name of the GeoSciences Linux server, it's address is <code>burn.geos.ed.ac.uk</code>:</p>
 <ul class="incremental">
@@ -81,10 +80,10 @@
 <li>In &quot;Category: Connection, SSH&quot; Check <code>Enable X11 forwarding</code> - which allows X window applications to be opened on your desktop (e.g. <code>xeyes</code>)</li>
 </ul>
 <p>Then click &quot;Open&quot; to start the connection, type your UUN (e.g. <code>s1234567</code>) and the password you use to login to MyEd, Windows machines etc.</p>
-<h4 id="from-a-personal-windows-machine">From a personal Windows machine</h4>
+<h3 id="from-a-personal-windows-machine">From a personal Windows machine</h3>
 <p>You can also use PuTTY from your own windows machine, you can download it from <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">here</a>.</p>
 <p>Make sure you are connected to the University VPN service (<a href="http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn">more information can be found here</a>), then open PuTTY and connect using the same options as the ones above for a GeoSciences Windows machine.</p>
-<h4 id="from-a-personal-macoslinux-machine">From a personal macOS/Linux machine</h4>
+<h3 id="from-a-personal-macoslinux-machine">From a personal macOS/Linux machine</h3>
 <p>If you have a personal macOS or Linux machine you can use a terminal emulator such as <code>Terminal.app</code> to connect to a University Linux server.</p>
 <p>Open <code>Terminal.app</code> or your terminal emulator of choice and type the following, replacing <code>s1234567</code> with your own UUN:</p>
 <pre><code>ssh -x s1234567@burn.geos.ed.ac.uk</code></pre>
@@ -138,7 +137,7 @@ mkdir data</code></pre>
 <pre><code>mkdir notes/wk_1</code></pre>
 <p>Notice that I used <code>/</code> to create the <code>wk_1</code> directory inside an existing directory.</p>
 <p>Type <code>tree</code> to check that all the directories have been created. <code>tree</code> gives a nice overview of the directory structure in the directory you are currently in.</p>
-<p>Your tree output should look like this:</p>
+<p>Your <code>tree</code> output should look like this:</p>
 <pre><code>.
 ├── data
 ├── downloads
@@ -348,15 +347,13 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
 <p><a name="gui"></a></p>
 <h2 id="logging-on-using-a-graphical-interface">Logging on using a graphical interface</h2>
 <p>Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:</p>
-<div class="figure">
-<img src="img/gui.png" />
-
-</div>
+<center>
+<img src="img/gui.png" style="width: 650px;"/>
+</center>
 <p>Log on to <code>burn</code> using a graphical interface using one of the methods below, then have a look around the desktop, you will see some applications that are familiar from the Windows machines, and some new applications. Also notice that you can open a command line interface and interact with the server just as you did earlier on in the workshop by clicking the button of the black computer screen:</p>
-<div class="figure">
-<img src="img/gui_term.png" />
-
-</div>
+<center>
+<img src="img/gui_term.png" style="width: 650px;"/>
+</center>
 <h4 id="from-a-geosciences-windows-machine">From a GeoSciences Windows machine</h4>
 <p>Open &quot;NX Connection Wizard&quot; from the Start menu.</p>
 <p>Configure the connection like so:</p>
