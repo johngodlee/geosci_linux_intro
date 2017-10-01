@@ -1,4 +1,6 @@
-# Table of Contents:
+# Linux in GeoSciences
+
+## Table of Contents:
 
 1. [Introduction](#introduction)
 2. [What is UNIX?](#what)
@@ -20,7 +22,7 @@
 
 <a name="introduction"></a>
 
-# Linux in GeoSciences
+## Introduction
 
 The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.
 
@@ -77,7 +79,7 @@ There are three main ways to access systems running Linux in the School of GeoSc
 
 By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal computer or laptop is becoming more popular.
 
-![](img/net_struc.png)
+<center> <img src="img/net_struc.png" style="width: 650px;"/> </center>
 
 <a name="login"></a>
 
@@ -85,11 +87,11 @@ By far the most common way to access Linux is to use a GeoSciences Windows machi
 
 Most of the tasks you will need to use a Linux server for can be achieved through a command line interface like the one in the picture below:
 
-![](img/cli.png)
+<center> <img src="img/cli.png" style="width: 650px;"/> </center>
 
 Choose your method of connecting to the GeoSciences Linux server from the options below and follow the instructions in that section.
 
-#### Logging in from a GeoSciences Windows machine
+### Logging in from a GeoSciences Windows machine
 To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a command line interface to allow you to connect remotely to other machines. The PuTTY application is located at: `U:\SCE\GEOS\putty.exe`. I recommend making a shortcut to it and putting it on your desktop.
 
 First, open PuTTY and configure the PuTTY session using the instructions below. `burn` is the name of the GeoSciences Linux server, it's address is `burn.geos.ed.ac.uk`:
@@ -101,12 +103,14 @@ First, open PuTTY and configure the PuTTY session using the instructions below. 
 
 Then click "Open" to start the connection, type your UUN (e.g. `s1234567`) and the password you use to login to MyEd, Windows machines etc.
 
-#### From a personal Windows machine
+### From a personal Windows machine
+
 You can also use PuTTY from your own windows machine, you can download it from [here](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html).
 
 Make sure you are connected to the University VPN service ([more information can be found here](http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn)), then open PuTTY and connect using the same options as the ones above for a GeoSciences Windows machine.
 
-#### From a personal macOS/Linux machine
+### From a personal macOS/Linux machine
+
 If you have a personal macOS or Linux machine you can use a terminal emulator such as `Terminal.app` to connect to a University Linux server.
 
 Open `Terminal.app` or your terminal emulator of choice and type the following, replacing `s1234567` with your own UUN:
@@ -206,7 +210,8 @@ Notice that I used `/` to create the `wk_1` directory inside an existing directo
 
 Type `tree` to check that all the directories have been created. `tree` gives a nice overview of the directory structure in the directory you are currently in.
 
-Your tree output should look like this:
+Your `tree` output should look like this:
+
 
 ```
 .
@@ -237,6 +242,8 @@ tree
 The output of `tree` should look something like this:
 
 ![](tree.png)
+
+
 
 ### Moving files and directories
 
@@ -676,11 +683,11 @@ Once you have used `lp` to print a file, you can go to any GeoSciences printer a
 
 Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:
 
-![](img/gui.png)
+<center> <img src="img/gui.png" style="width: 650px;"/> </center>
 
 Log on to `burn` using a graphical interface using one of the methods below, then have a look around the desktop, you will see some applications that are familiar from the Windows machines, and some new applications. Also notice that you can open a command line interface and interact with the server just as you did earlier on in the workshop by clicking the button of the black computer screen:
 
-![](img/gui_term.png)
+<center> <img src="img/gui_term.png" style="width: 650px;"/> </center>
 
 #### From a GeoSciences Windows machine
 
@@ -797,3 +804,4 @@ wiki.ed.ac.uk/display/ResearchServices/Quickstart
 To submit scripts to eddie you must submit them as a `jobscript`.
 
 ### Hopefully this workshop has informed you of some of the useful things you can do with the GeoSciences Linux computing environment and encouraged you to think about how this powerful technology could improve your research while at the University of Edinburgh.
+
