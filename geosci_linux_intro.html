@@ -372,14 +372,38 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
 <p>Connect to the University VPN (<a href="http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn">more information can be found here</a>).</p>
 <p>Open NoMachine</p>
 <p>Create a new connection:</p>
-<p>Select Protocol: SSH</p>
+<center>
+<img src="img/gui_term.png" style="width: 500px;"/>
+</center>
+<p>Select Protocol: <code>SSH</code></p>
+<center>
+<img src="img/per_ssh.png" style="width: 250px;"/>
+</center>
 <p>Type Host: <code>nx.geos.ed.ac.uk</code>, Port: <code>22</code></p>
+<center>
+<img src="img/per_host.png" style="width: 500px;"/>
+</center>
 <p>Select &quot;Use NoMachine login&quot;</p>
-<p>Make sure &quot;Use and alternate server key&quot; is left unchecked and blank</p>
+<center>
+<img src="img/per_log.png" style="width: 500px;"/>
+</center>
+<p>Make sure &quot;Use an alternate server key&quot; is left unchecked and blank</p>
+<center>
+<img src="img/per_key.png" style="width: 300px;"/>
+</center>
 <p>Select &quot;Don't use a proxy&quot;</p>
+<center>
+<img src="img/per_proxy.png" style="width: 500px;"/>
+</center>
 <p>Give the connection a sensible name</p>
-<p>Connect to the newly created connection and select a desktop environment such as <code>KDE</code>. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.</p>
+<p>Select the new connection and click <code>Connect</code> and select a desktop environment such as <code>KDE</code>. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.</p>
+<center>
+<img src="img/per_desktop.png" style="width: 500px;"/>
+</center>
 <p>When prompted for a password use the password you use to login to MyEd.</p>
+<center>
+<img src="img/per_pass.png" style="width: 500px;"/>
+</center>
 <p><a name="net_drive"></a></p>
 <h1 id="adding-network-drives-to-your-personal-computer">Adding network drives to your personal computer</h1>
 <p>As well as accessing your <code>M:</code> drive through the command line, you can add it as network drive to be accessed by the file explorer on your personal computer.</p>
@@ -391,7 +415,7 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
 <p>When prompted for your username and password, replace any username that has been autofilled with your UUN and use the password that you use to login to MyEd and the Windows machines.</p>
 <p>You should now be taken to your <code>M:</code> drive in <code>Finder.app</code> and be able to move files around and add things from your personal computer easily.</p>
 <p>You can use the same method as above to add the &quot;Research DataStore&quot;, which gives every research student and staff member 500GB of backed up storage space. The addressto add is:</p>
-<pre><code>smb://csce.datastore.ed.ac.uk/csce/geos/users/s1234567 </code></pre>
+<pre><code>smb://csce.datastore.ed.ac.uk/csce/geos/users/s1234567</code></pre>
 <p>replacing <code>s1234567</code> with your UUN.</p>
 <h2 id="adding-a-network-drive-on-windows">Adding a network drive on Windows</h2>
 <p>Make sure you are connected to the University VPN.</p>
@@ -409,8 +433,37 @@ wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
 <p>While <code>burn.geos.ed.ac.uk</code> is great for relatively light computing activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in <code>burn</code> is just not enough. This lack of processing power becomes especially apparent when many people are using <code>burn</code> at the same time.</p>
 <p>If you find you need the extra computing power you can freely logon to the University of Edinburgh cluster computer, nicknamed <code>eddie</code>. To log on, first login to <code>burn</code> using your chosen method from the ones we covered earlier, then in a terminal window type:</p>
 <pre><code>ssh eddie</code></pre>
-<p>wiki.ed.ac.uk/display/ResearchServices/Quickstart</p>
-<p>To submit scripts to eddie you must submit them as a <code>jobscript</code>.</p>
+<p><code>eddie</code> provides a number of storage spaces, just like <code>burn</code>. Your personal space (2 GB) is in:</p>
+<pre><code>/home/s1234567</code></pre>
+<p>You can request a group datastore (200 GB) from <a href="mailto:is.helpline.ed.ac.uk">is.helpline.ed.ac.uk</a>. After it is granted you can find it at:</p>
+<pre><code>/exports/&lt;COLLEGE&gt;/eddie/&lt;SCHOOL&gt;/groups/&lt;GROUP NAME&gt;</code></pre>
+<p>As on <code>burn</code>, you can find temporary scratch space (20-50 TB) at:</p>
+<pre><code>/exports/eddie/scratch/&lt;UUN&gt;</code></pre>
+<p>The most common method of submitting computing work to <code>eddie</code> is as a batch job. To do this you must write a <code>jobscript.sh</code> bash script which calls any computation jobs.</p>
+<p>To submit a jobscript you can use <code>qsub</code>:</p>
+<pre><code>qsub jobscript.sh</code></pre>
+<p>Here is an example jobscript, which simply loads python then runs another python script:</p>
+<pre><code>#!/bin/sh
+# Grid Engine options (lines prefixed with #$)
+#$ -N hello
+#$ -cwd
+#$ -l h_rt=00:05:00
+#$ -l h_vmem=1G
+#  These options are:
+#  job name: -N
+#  use the current working directory: -cwd
+#  runtime limit of 5 minutes: -l h_rt
+#  memory limit of 1 Gbyte: -l h_vmem
+
+# Initialise the environment modules
+. /etc/profile.d/modules.sh
+
+# Load Python
+module load Python/3.4.3
+
+# Run the program
+./hello.py</code></pre>
+<p>You can find more information on using <code>eddie</code> <a href="https://www.wiki.ed.ac.uk/display/ResearchServices/Quickstart">here</a>.</p>
 <h3 id="hopefully-this-workshop-has-informed-you-of-some-of-the-useful-things-you-can-do-with-the-geosciences-linux-computing-environment-and-encouraged-you-to-think-about-how-this-powerful-technology-could-improve-your-research-while-at-the-university-of-edinburgh.">Hopefully this workshop has informed you of some of the useful things you can do with the GeoSciences Linux computing environment and encouraged you to think about how this powerful technology could improve your research while at the University of Edinburgh.</h3>
 <h3 id="below-is-a-concise-table-with-the-commands-used-in-this-workshop-for-future-reference.">Below is a concise table with the commands used in this workshop, for future reference.</h3>
 <style type="text/css">
