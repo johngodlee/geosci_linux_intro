@@ -454,10 +454,10 @@ du –sh
 du -sh ~/*
 ```
 
-The `*` symbol is a special character that returns everything within a given directory. You can also use `*` to avoid typing out a long file name. For instance, imagine I had a file called `really_long_file_name_2017_8_1.txt`, I could view the contents of that file simpy by typing:
+The `*` symbol is a special character that returns everything within a given directory. You can also use `*` to avoid typing out a long file name. For instance, imagine I had a file called `really_long_file_name_2017_8_1.txt`, I could view the contents of that file with `cat` simply by typing:
 
 ```
-*2017_8_1.txt
+cat *2017_8_1.txt
 ```
 
 This is assuming however that I have no other files or directories in that directory with `2017_8_1.txt` in their name.
