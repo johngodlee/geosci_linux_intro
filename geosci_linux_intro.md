@@ -99,7 +99,7 @@ First, open PuTTY and configure the PuTTY session using the instructions below. 
 - "Host Name (or IP address)" = `burn.geos.ed.ac.uk`
 - "Port" = `22`
 - "Connection type:" = `SSH`
-- In "Category: Connection, SSH" Check `Enable X11 forwarding` - which allows X window applications to be opened on your desktop (e.g. `xeyes`)
+- In "Category: Connection, SSH" Check `Enable X11 forwarding` - which allows X window applications to be opened on your desktop (e.g. `xeyes`, <a name="background">see below</a>)
 
 Then click "Open" to start the connection, type your UUN (e.g. `s1234567`) and the password you use to login to MyEd, Windows machines etc.
 
@@ -453,6 +453,14 @@ du –sh
 ```
 du -sh ~/*
 ```
+
+The `*` symbol is a special character that returns everything within a given directory. You can also use `*` to avoid typing out a long file name. For instance, imagine I had a file called `really_long_file_name_2017_8_1.txt`, I could view the contents of that file simpy by typing:
+
+```
+*2017_8_1.txt
+```
+
+This is assuming however that I have no other files or directories in that directory with `2017_8_1.txt` in their name.
 
 <a name="background"></a>
 

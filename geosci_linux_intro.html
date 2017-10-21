@@ -88,7 +88,7 @@
 <li>&quot;Host Name (or IP address)&quot; = <code>burn.geos.ed.ac.uk</code></li>
 <li>&quot;Port&quot; = <code>22</code></li>
 <li>&quot;Connection type:&quot; = <code>SSH</code></li>
-<li>In &quot;Category: Connection, SSH&quot; Check <code>Enable X11 forwarding</code> - which allows X window applications to be opened on your desktop (e.g. <code>xeyes</code>)</li>
+<li>In &quot;Category: Connection, SSH&quot; Check <code>Enable X11 forwarding</code> - which allows X window applications to be opened on your desktop (e.g. <code>xeyes</code>, <a name="background">see below</a>)</li>
 </ul>
 <p>Then click &quot;Open&quot; to start the connection, type your UUN (e.g. <code>s1234567</code>) and the password you use to login to MyEd, Windows machines etc.</p>
 <h3 id="from-a-personal-windows-machine">From a personal Windows machine</h3>
@@ -259,6 +259,9 @@ cat notes.txt</code></pre>
 <pre><code>du –sh</code></pre>
 <p><code>du</code> can also give you a breakdown of how much space each file and directory is taking up in your <code>~</code> directory. You can check this by typing:</p>
 <pre><code>du -sh ~/*</code></pre>
+<p>The <code>*</code> symbol is a special character that returns everything within a given directory. You can also use <code>*</code> to avoid typing out a long file name. For instance, imagine I had a file called <code>really_long_file_name_2017_8_1.txt</code>, I could view the contents of that file simpy by typing:</p>
+<pre><code>*2017_8_1.txt</code></pre>
+<p>This is assuming however that I have no other files or directories in that directory with <code>2017_8_1.txt</code> in their name.</p>
 <p><a name="background"></a></p>
 <h2 id="running-background-processes">Running background processes</h2>
 <p>Sometimes a process will continue running indefinitely and not allow you to use the terminal until you stop it. This is especially true if you start a graphical program from the command line, e.g. a web browser.</p>
