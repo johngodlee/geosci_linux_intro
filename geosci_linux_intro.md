@@ -150,7 +150,7 @@ To see what directories and files are inside the current directory type:
 ls
 ```
 
-followed by the <Enter> key. All commands must be followed by the <Enter> key to run them. The `ls` command should output a list of the directories and files inside the `~` directory, because that is the directory we are currently in. 
+followed by the <Enter> key. All commands must be followed by the <Enter> key to run them. The `ls` command should output a list of the directories and files inside the `~` directory, because that is the directory we are currently in.
 
 To change to another directory, type `cd` then the directory name. List the directories in your current directory using `ls` then pick one and change to it:
 
@@ -555,7 +555,7 @@ Note that when I called the shell script I had to prefix the script name (`grep_
 
 <a name="download"></a>
 
-## Downloading files 
+## Downloading files
 
 ### Downloading from a file server using `ftp` (File Transfer Program/Protocol)
 
@@ -715,21 +715,37 @@ Open NoMachine
 
 Create a new connection:
 
-Select Protocol: SSH
+<center> <img src="img/gui_term.png" style="width: 500px;"/> </center>
+
+Select Protocol: `SSH`
+
+<center> <img src="img/per_ssh.png" style="width: 250px;"/> </center>
 
 Type Host: `nx.geos.ed.ac.uk`, Port: `22`
 
+<center> <img src="img/per_host.png" style="width: 500px;"/> </center>
+
 Select "Use NoMachine login"
 
-Make sure "Use and alternate server key" is left unchecked and blank
+<center> <img src="img/per_log.png" style="width: 500px;"/> </center>
+
+Make sure "Use an alternate server key" is left unchecked and blank
+
+<center> <img src="img/per_key.png" style="width: 300px;"/> </center>
 
 Select "Don't use a proxy"
 
+<center> <img src="img/per_proxy.png" style="width: 500px;"/> </center>
+
 Give the connection a sensible name
 
-Connect to the newly created connection and select a desktop environment such as `KDE`. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.
+Select the new connection and click `Connect` and select a desktop environment such as `KDE`. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.
+
+<center> <img src="img/per_desktop.png" style="width: 500px;"/> </center>
 
 When prompted for a password use the password you use to login to MyEd.
+
+<center> <img src="img/per_pass.png" style="width: 500px;"/> </center>
 
 <a name="net_drive"></a>
 
@@ -747,7 +763,7 @@ Open `Finder.app`, Click `Connect to server ...` in the `Go` menu at the top of 
 smb://students.geos.ed.ac.uk/s1234567
 ```
 
-replacing `s1234567` with your own UUN. Click the `+` button to add the address as a favourite, then select it and click `Connect`. 
+replacing `s1234567` with your own UUN. Click the `+` button to add the address as a favourite, then select it and click `Connect`.
 
 When prompted for your username and password, replace any username that has been autofilled with your UUN and use the password that you use to login to MyEd and the Windows machines.
 
@@ -756,7 +772,7 @@ You should now be taken to your `M:` drive in `Finder.app` and be able to move f
 You can use the same method as above to add the "Research DataStore", which gives every research student and staff member 500GB of backed up storage space. The addressto add is:
 
 ```
-smb://csce.datastore.ed.ac.uk/csce/geos/users/s1234567 
+smb://csce.datastore.ed.ac.uk/csce/geos/users/s1234567
 ```
 
 replacing `s1234567` with your UUN.
@@ -799,13 +815,62 @@ If you find you need the extra computing power you can freely logon to the Unive
 ssh eddie
 ```
 
-wiki.ed.ac.uk/display/ResearchServices/Quickstart
+`eddie` provides a number of storage spaces, just like `burn`. Your personal space (2 GB) is in:
 
-To submit scripts to eddie you must submit them as a `jobscript`.
+```
+/home/s1234567
+```
+
+You can request a group datastore (200 GB) from <a href="mailto:is.helpline.ed.ac.uk">is.helpline.ed.ac.uk</a>. After it is granted you can find it at:
+
+```
+/exports/<COLLEGE>/eddie/<SCHOOL>/groups/<GROUP NAME>
+```
+
+As on `burn`, you can find temporary scratch space (20-50 TB) at:
+
+```
+/exports/eddie/scratch/<UUN>
+```
+
+The most common method of submitting computing work to `eddie` is as a batch job. To do this you must write a `jobscript.sh` bash script which calls any computation jobs.
+
+To submit a jobscript you can use `qsub`:
+
+```
+qsub jobscript.sh
+```
+
+Here is an example jobscript, which simply loads python then runs another python script:
+
+```
+#!/bin/sh
+# Grid Engine options (lines prefixed with #$)
+#$ -N hello
+#$ -cwd
+#$ -l h_rt=00:05:00
+#$ -l h_vmem=1G
+#  These options are:
+#  job name: -N
+#  use the current working directory: -cwd
+#  runtime limit of 5 minutes: -l h_rt
+#  memory limit of 1 Gbyte: -l h_vmem
+
+# Initialise the environment modules
+. /etc/profile.d/modules.sh
+
+# Load Python
+module load Python/3.4.3
+
+# Run the program
+./hello.py
+```
+
+You can find more information on using `eddie` <a href="https://www.wiki.ed.ac.uk/display/ResearchServices/Quickstart">here</a>.
 
 ### Hopefully this workshop has informed you of some of the useful things you can do with the GeoSciences Linux computing environment and encouraged you to think about how this powerful technology could improve your research while at the University of Edinburgh.
 
-### Below is a concise table with the commands used in this workshop, for future reference. 
+### Below is a concise table with the commands used in this workshop, for future reference.
 
 <style type="text/css">
 .tg {border-collapse:collapse;border-spacing:0}
@@ -938,4 +1003,3 @@ To submit scripts to eddie you must submit them as a `jobscript`.
 <th>lprm 46745</th>
 </tr>
 </table>
-
