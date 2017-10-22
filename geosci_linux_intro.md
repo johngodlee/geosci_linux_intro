@@ -759,7 +759,7 @@ When prompted for a password use the password you use to login to MyEd.
 
 # Adding network drives to your personal computer
 
-As well as accessing your `M:` drive through the command line, you can add it as network drive to be accessed by the file explorer on your personal computer.
+As well as accessing your `M:` drive through the command line, you can add it as a network drive to be accessed by the file explorer on your personal computer.
 
 ## Adding a network drive on a Mac
 
