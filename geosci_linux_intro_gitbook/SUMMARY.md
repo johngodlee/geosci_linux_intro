@@ -1,0 +1,21 @@
+# Summary
+
+* [Introduction](README.md)
+* [Basics](basics/README.md)
+    * [Bash Prompt](basics/bash_prompt.md)
+    * [Change Dir](basics/change_dir.md)
+    * [Make File Dir](basics/make_file_dir.md)
+    * [Move File Dir](basics/move_file_dir.md)
+* [Files](files/README.md)
+    * [Editors Pagers](files/editors_pagers.md)
+    * [Pipes](files/pipes.md)
+* [Login](login/README.md)
+    * [Login Geosci Windows Cli](login/login_geosci_windows_cli.md)
+    * [Login Geosci Windows Gui](login/login_geosci_windows_gui.md)
+    * [Login Personal Mac Linux Cli](login/login_personal_mac_linux_cli.md)
+    * [Login Personal Windows Cli](login/login_personal_windows_cli.md)
+    * [Login Personal Windows Mac Linux Gui](login/login_personal_windows_mac_linux_gui.md)
+* [Shared Scratch](shared_scratch/README.md)
+    * [Scratch](shared_scratch/scratch.md)
+    * [Shared](shared_scratch/shared.md)
+
