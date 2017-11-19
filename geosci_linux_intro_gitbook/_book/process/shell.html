@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Move File Dir · GitBook</title>
+        <title>Shell · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,10 +57,10 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../dl_manip/" />
+    <link rel="next" href="../shared_scratch/" />
     
     
-    <link rel="prev" href="make_file_dir.html" />
+    <link rel="prev" href="monitoring.html" />
     
 
     </head>
@@ -102,9 +102,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="./">
+        <li class="chapter " data-level="1.2" data-path="../basics/">
             
-                <a href="./">
+                <a href="../basics/">
             
                     
                     Basics
@@ -116,9 +116,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.2.1" data-path="bash_prompt.html">
+        <li class="chapter " data-level="1.2.1" data-path="../basics/bash_prompt.html">
             
-                <a href="bash_prompt.html">
+                <a href="../basics/bash_prompt.html">
             
                     
                     Bash Prompt
@@ -129,9 +129,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.2" data-path="change_dir.html">
+        <li class="chapter " data-level="1.2.2" data-path="../basics/change_dir.html">
             
-                <a href="change_dir.html">
+                <a href="../basics/change_dir.html">
             
                     
                     Change Dir
@@ -142,9 +142,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2.3" data-path="make_file_dir.html">
+        <li class="chapter " data-level="1.2.3" data-path="../basics/make_file_dir.html">
             
-                <a href="make_file_dir.html">
+                <a href="../basics/make_file_dir.html">
             
                     
                     Make File Dir
@@ -155,9 +155,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.2.4" data-path="move_file_dir.html">
+        <li class="chapter " data-level="1.2.4" data-path="../basics/move_file_dir.html">
             
-                <a href="move_file_dir.html">
+                <a href="../basics/move_file_dir.html">
             
                     
                     Move File Dir
@@ -412,9 +412,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6" data-path="../process/">
+        <li class="chapter " data-level="1.6" data-path="./">
             
-                <a href="../process/">
+                <a href="./">
             
                     
                     Process
@@ -426,9 +426,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.6.1" data-path="../process/background.html">
+        <li class="chapter " data-level="1.6.1" data-path="background.html">
             
-                <a href="../process/background.html">
+                <a href="background.html">
             
                     
                     Background
@@ -439,9 +439,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.2" data-path="../process/monitoring.html">
+        <li class="chapter " data-level="1.6.2" data-path="monitoring.html">
             
-                <a href="../process/monitoring.html">
+                <a href="monitoring.html">
             
                     
                     Monitoring
@@ -452,9 +452,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.6.3" data-path="../process/shell.html">
+        <li class="chapter active" data-level="1.6.3" data-path="shell.html">
             
-                <a href="../process/shell.html">
+                <a href="shell.html">
             
                     
                     Shell
@@ -558,7 +558,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Move File Dir</a>
+        <a href=".." >Shell</a>
     </h1>
 </div>
 
@@ -573,31 +573,38 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="moving-copying-deleting-files-and-directories">Moving, copying, deleting files and directories</h1>
-<p>Next I want to make a copy of my <code>notes.txt</code> file and place it in my <code>home</code> directory, so I have a copy to work on. To do this I can use <code>cp</code>. <code>cp</code> takes two arguments, the first gives the filepath of the file or directory I want to copy (<code>~/linux_intro/notes/wk_1/notes.txt</code>), and the second gives the location of where I want to put the file or directory (<code>~/notes.txt</code>):</p>
-<pre><code>cp ~/linux_intro/notes/wk_1/notes.txt ~/notes.txt
-</code></pre><p>Actually, after some profound thoughts, I have realised that it would be much more useful if <code>notes.txt</code> was in my <code>Documents</code> directory, so I can move the file using <code>mv</code>:</p>
+                                <h1 id="shell-scripting">Shell scripting</h1>
+<p>As you start to learn terminal commands and do more computing in the Linux environment you may find that you perform the same set of actions over and over. For example, if you get regular data files sent to you from some distant fieldsite, you may want to manipulate that data in the same way every time. Shell scripting allows you to save a set of commands for later use. Let&apos;s make a script that allows us to <code>grep</code> for lines containing a given word in the <code>nation_data.txt</code> file and any other file in the future. <code>cd</code> to the <code>home</code> directory and open the <code>nano</code> text editor:</p>
 <pre><code>cd
 
-mv notes.txt ~/Documents/notes.txt
-</code></pre><p>Because <code>notes.txt</code> isn&apos;t a particularly informative filename, I can also use <code>mv</code> to rename files:</p>
-<pre><code>cd ~/Documents
+nano
+</code></pre><p>Shell scripts should always start with the following code, also known as a &quot;shebang&quot;:</p>
+<pre><code>#!/bin/bash
+</code></pre><p>This tells the operating system that we are using the <code>bash</code> language, which is the language we have been using this whole time to interact with the Linux server! Google if you are interested in learning more about <code>bash</code>.</p>
+<p>Copy the following into nano to create a script that look like this:</p>
+<pre><code>#!/bin/bash
 
-mv notes.txt linux_notes.txt
-</code></pre><p>We have done a lot of moving around different directories, which can become confusing. If you ever want to check what directory you are in you can type <code>pwd</code>:</p>
-<pre><code>pwd
-</code></pre><p>Imagine that I&apos;m done working with <code>~/Documents/linux_notes.txt</code> and want to delete it. I can delete files using <code>rm</code>:</p>
-<pre><code>rm ~/Documents/notes.txt
-</code></pre><p>But it is important to note that when you delete a file in this way it doesn&apos;t get moved to the recycling bin, <strong>IT IS GONE FOREVER!</strong></p>
-<p>I can remove a directory instead of a file by adding the <code>-r</code> flag to <code>rm</code>. In this case I want to remove the <code>data</code> directory:</p>
-<pre><code>cd ~/linux_intro
+ls
 
-rm -r data
-</code></pre><p>Flags can be added to many commands to change their behaviour or add special inputs. A useful flag for the <code>rm</code> command is <code>-i</code>, which asks the user whether they really want to delete the file before deleting it. Once again, the reason this is useful is because <strong><code>rm</code> deletes files irreversibly!</strong> I could delete <code>~/Documents/linux_notes.txt</code> using the <code>-i</code> flag:</p>
-<pre><code>rm -i ~/Documents/linux_notes.txt
-</code></pre><p>To find out about other flags and their uses you can use the <code>man</code> command followed by the command you want to investigate. This opens the <code>man</code>ual page for that command. While <code>man</code> pages can be a bit dense, they should be your first port of call when investigating what a command does. e.g.:</p>
-<pre><code>man rm
-</code></pre><p>It&apos;s also worth remembering that a quick internet search for a command followed by the word &quot;Linux&quot; or a brief description of your problem will almost definitely yield useful results.</p>
+read -p &apos;File name to search through: &apos; file_name
+
+read -p &apos;Word to search for: &apos; word_name
+
+cat $file_name | grep $word_name | less
+</code></pre><p>On the line after the shebang we have asked to show the files in the current directory using <code>ls</code>.</p>
+<p>Then on the next line we use <code>read -p</code> to prompt the user for the name of a file from that list of files.</p>
+<p>On the next line we prompt the user for a word that they want to search for.</p>
+<p>And finally we include all these variables into a command that searches our nominated file for our nominated word and display it in <code>less</code>. The variables we created earlier in the script (<code>word_name</code>, <code>file_name</code>) can be called later in the script by prefixing their name with a <code>$</code> (<code>$word_name</code>, <code>$file_name</code>)</p>
+<p>Save the file to <code>~/grep_file.sh</code>. The <code>.sh</code> file extension stands for <code>sh</code>ell.</p>
+<p>To get the script to run as a script and not just a text file we need to make it &quot;executable&quot;.</p>
+<p>In the terminal type:</p>
+<pre><code>chmod +x ~/grep_file.sh
+</code></pre><p>To test that the script works, <code>cd</code> into the <code>wkzero</code> directory:</p>
+<pre><code>cd ~/linux_intro/downloads/wkzero
+</code></pre><p>Then enter:</p>
+<pre><code>~/./grep_file.sh
+</code></pre><p>First, the script should <code>ls</code> the current directory, then ask for us to nominate a file, then for a word to <code>grep</code> for. Finally, this should output all the lines containing our nominated word into <code>less</code>.</p>
+<p>Note that when I called the shell script I had to prefix the script name (<code>grep_file.sh</code>) with <code>./</code>, this is a finicky requirement for all user made scripts. If you really want to know why this is necessary, read <a href="http://www.linfo.org/dot_slash.html" target="_blank">this</a> and <a href="https://www.stackoverflow.com/q/6331075/5622415" target="_blank">this</a>. Warning, very dense and potentially boring.</p>
 
                                 
                                 </section>
@@ -625,12 +632,12 @@ rm -r data
 
             
                 
-                <a href="make_file_dir.html" class="navigation navigation-prev " aria-label="Previous page: Make File Dir">
+                <a href="monitoring.html" class="navigation navigation-prev " aria-label="Previous page: Monitoring">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="../dl_manip/" class="navigation navigation-next " aria-label="Next page: Dl Manip">
+                <a href="../shared_scratch/" class="navigation navigation-next " aria-label="Next page: Shared Scratch">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -641,7 +648,7 @@ rm -r data
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Move File Dir","level":"1.2.4","depth":2,"next":{"title":"Dl Manip","level":"1.3","depth":1,"path":"dl_manip/README.md","ref":"dl_manip/README.md","articles":[{"title":"Dl Ftp","level":"1.3.1","depth":2,"path":"dl_manip/dl_ftp.md","ref":"dl_manip/dl_ftp.md","articles":[]},{"title":"Dl Wget Curl","level":"1.3.2","depth":2,"path":"dl_manip/dl_wget_curl.md","ref":"dl_manip/dl_wget_curl.md","articles":[]},{"title":"Print","level":"1.3.3","depth":2,"path":"dl_manip/print.md","ref":"dl_manip/print.md","articles":[]},{"title":"Zip Tar","level":"1.3.4","depth":2,"path":"dl_manip/zip_tar.md","ref":"dl_manip/zip_tar.md","articles":[]}]},"previous":{"title":"Make File Dir","level":"1.2.3","depth":2,"path":"basics/make_file_dir.md","ref":"basics/make_file_dir.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"basics/move_file_dir.md","mtime":"2017-11-15T21:58:45.261Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-19T20:34:35.287Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Shell","level":"1.6.3","depth":2,"next":{"title":"Shared Scratch","level":"1.7","depth":1,"path":"shared_scratch/README.md","ref":"shared_scratch/README.md","articles":[{"title":"Scratch","level":"1.7.1","depth":2,"path":"shared_scratch/scratch.md","ref":"shared_scratch/scratch.md","articles":[]},{"title":"Shared","level":"1.7.2","depth":2,"path":"shared_scratch/shared.md","ref":"shared_scratch/shared.md","articles":[]}]},"previous":{"title":"Monitoring","level":"1.6.2","depth":2,"path":"process/monitoring.md","ref":"process/monitoring.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"process/shell.md","mtime":"2017-11-19T20:21:05.219Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-19T20:34:35.287Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
