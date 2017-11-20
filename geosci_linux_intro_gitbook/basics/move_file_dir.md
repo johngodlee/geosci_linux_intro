@@ -1,6 +1,6 @@
 # Moving, copying, deleting files and directories
 
-Next I want to make a copy of my `notes.txt` file and place it in my `home` directory, so I have a copy to work on. To do this I can use `cp`. `cp` takes two arguments, the first gives the filepath of the file or directory I want to copy (`~/linux_intro/notes/wk_1/notes.txt`), and the second gives the location of where I want to put the file or directory (`~/notes.txt`):
+I want to make a copy of my `notes.txt` file and place it in my `home` directory, so I have a copy to work on. To do this I can use `cp`. `cp` takes two arguments, the first gives the filepath of the file or directory I want to copy (`~/linux_intro/notes/wk_1/notes.txt`), and the second gives the location of where I want to put the file or directory (`~/notes.txt`):
 
 ```
 cp ~/linux_intro/notes/wk_1/notes.txt ~/notes.txt

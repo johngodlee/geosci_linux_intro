@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>Even More Power with eddie · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="login/" />
+    <link rel="next" href="quicklook.html" />
     
+    
+    <link rel="prev" href="process/shell.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -500,7 +502,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="eddie.html">
+        <li class="chapter active" data-level="1.8" data-path="eddie.html">
             
                 <a href="eddie.html">
             
@@ -556,7 +558,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >Even More Power with eddie</a>
     </h1>
 </div>
 
@@ -571,34 +573,41 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="introduction">Introduction</h1>
-<p>The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.</p>
-<p>UNIX based operating systems give much more control to the user compared with a Windows Operating System. The most common and powerful method of interaction with a UNIX based system is through the command line rather than through a windows-like point and click interface. Additionally, much of the software available on UNIX platforms is free and open source, meaning that everybody has access to the code used to create a piece of software, meaning that you know exactly what the program is doing. Having this amount of control over your computing is very useful in academia where research should be entirely <a href="https://academic.oup.com/bioscience/article/56/12/958/221622" target="_blank">reproducible and repeatable</a>. Using a text interface will also give you a lot more creative power to design analyses the way you like.</p>
-<p>Students use the GeoSciences UNIX systems for a variety of tasks, including but not limited to:</p>
-<ul>
-<li>Simulation modelling</li>
-<li>GIS and mapping</li>
-<li>Running an email server</li>
-<li>Statistical programming</li>
-</ul>
-<p>While this workshop is not designed to be a definitive reference, it should provide a good introduction from which you can continue to learn about this powerful resource.</p>
-<p>All the introduction materials, including the raw files for this <a href="https://www.gitbook.com/" target="_blank">gitbook</a>, can be found here:</p>
-<pre><code>http://www.geos.ed.ac.uk/~gisteac/wkzero
-</code></pre><p>Either work through the chapters in this book sequentially, or choose a specific topic you would like to learn more about.</p>
-<h2 id="by-the-end-of-this-workshop-you-should-be-able-to">By the end of this workshop you should be able to:</h2>
-<ul>
-<li>Log on to any UNIX machine in the School of GeoSciences</li>
-<li>Locate your home directory</li>
-<li>Perform simple file operations on the command line using, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>cp</code>, <code>mv</code>, <code>rm</code></li>
-<li>View plain text files in a number of different ways using pagers and editors</li>
-<li>Find help on commands/programs using <code>man</code> pages</li>
-<li>Download and retrieve data via FTP</li>
-<li>Monitor memory usage, and find out about other users on the system using <code>finger</code>, <code>ps</code>, <code>kill</code></li>
-<li>Search within files using <code>grep</code></li>
-<li>Connect to the GeoSciences Linux server using a graphical client</li>
-<li>Map GeoSciences network drives on your personal computer</li>
-<li>Tell other people how awesome UNIX is</li>
-</ul>
+                                <h1 id="logging-onto-the-university-of-edinburgh-cluster-computer---eddie">Logging onto the University of Edinburgh cluster computer - <code>eddie</code></h1>
+<p>While <code>burn.geos.ed.ac.uk</code> is great for relatively light computing activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in <code>burn</code> is just not enough. This lack of processing power becomes especially apparent when many people are using <code>burn</code> at the same time.</p>
+<p>If you find you need the extra computing power you can freely logon to the University of Edinburgh cluster computer, nicknamed <code>eddie</code>. To log on, first login to <code>burn</code> using your chosen method from the ones we covered earlier, then in a terminal window type:</p>
+<pre><code>ssh eddie
+</code></pre><p><code>eddie</code> provides a number of storage spaces, just like <code>burn</code>. Your personal space (2 GB) is in:</p>
+<pre><code>/home/s1234567
+</code></pre><p>You can request a group datastore (200 GB) from <a href="mailto:is.helpline.ed.ac.uk" target="_blank">is.helpline.ed.ac.uk</a>. After it is granted you can find it at:</p>
+<pre><code>/exports/&lt;COLLEGE&gt;/eddie/&lt;SCHOOL&gt;/groups/&lt;GROUP NAME&gt;
+</code></pre><p>As on <code>burn</code>, you can find temporary scratch space (20-50 TB) at:</p>
+<pre><code>/exports/eddie/scratch/&lt;UUN&gt;
+</code></pre><p>The most common method of submitting computing work to <code>eddie</code> is as a batch job. To do this you must write a <code>jobscript.sh</code> bash script which calls any computation jobs.</p>
+<p>To submit a jobscript you can use <code>qsub</code>:</p>
+<pre><code>qsub jobscript.sh
+</code></pre><p>Here is an example jobscript, which simply loads python then runs another python script:</p>
+<pre><code>#!/bin/sh
+# Grid Engine options (lines prefixed with #$)
+#$ -N hello
+#$ -cwd
+#$ -l h_rt=00:05:00
+#$ -l h_vmem=1G
+#  These options are:
+#  job name: -N
+#  use the current working directory: -cwd
+#  runtime limit of 5 minutes: -l h_rt
+#  memory limit of 1 Gbyte: -l h_vmem
+
+# Initialise the environment modules
+. /etc/profile.d/modules.sh
+
+# Load Python
+module load Python/3.4.3
+
+# Run the program
+./hello.py
+</code></pre><p>You can find more information on using <code>eddie</code> <a href="https://www.wiki.ed.ac.uk/display/ResearchServices/Quickstart" target="_blank">here</a>.</p>
 
                                 
                                 </section>
@@ -626,8 +635,12 @@
 
             
                 
+                <a href="process/shell.html" class="navigation navigation-prev " aria-label="Previous page: Shell Scripting">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="login/" class="navigation navigation-next navigation-unique" aria-label="Next page: Login">
+                
+                <a href="quicklook.html" class="navigation navigation-next " aria-label="Next page: Quicklook Table">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -638,7 +651,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Login","level":"1.2","depth":1,"path":"login/README.md","ref":"login/README.md","articles":[{"title":"Command Line - GeoSciences Windows","level":"1.2.1","depth":2,"path":"login/login_geosci_windows_cli.md","ref":"login/login_geosci_windows_cli.md","articles":[]},{"title":"Command Line - Personal Windows","level":"1.2.2","depth":2,"path":"login/login_personal_windows_cli.md","ref":"login/login_personal_windows_cli.md","articles":[]},{"title":"Command Line - Personal Mac","level":"1.2.3","depth":2,"path":"login/login_personal_mac_linux_cli.md","ref":"login/login_personal_mac_linux_cli.md","articles":[]},{"title":"GUI - GeoSciences Windows","level":"1.2.4","depth":2,"path":"login/login_geosci_windows_gui.md","ref":"login/login_geosci_windows_gui.md","articles":[]},{"title":"GUI - Personal Windows, Mac, Linux","level":"1.2.5","depth":2,"path":"login/login_personal_windows_mac_linux_gui.md","ref":"login/login_personal_windows_mac_linux_gui.md","articles":[]},{"title":"Adding a Network Drive - Personal Windows","level":"1.2.6","depth":2,"path":"login/network_windows.md","ref":"login/network_windows.md","articles":[]},{"title":"Adding a Network Drive - Personal Mac","level":"1.2.7","depth":2,"path":"login/network_mac.md","ref":"login/network_mac.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2017-11-20T17:32:01.151Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-20T17:55:29.344Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Even More Power with eddie","level":"1.8","depth":1,"next":{"title":"Quicklook Table","level":"1.9","depth":1,"path":"quicklook.md","ref":"quicklook.md","articles":[]},"previous":{"title":"Shell Scripting","level":"1.7.3","depth":2,"path":"process/shell.md","ref":"process/shell.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["livereload"],"pluginsConfig":{"livereload":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"eddie.md","mtime":"2017-11-19T20:26:29.844Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2017-11-20T17:55:29.344Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
