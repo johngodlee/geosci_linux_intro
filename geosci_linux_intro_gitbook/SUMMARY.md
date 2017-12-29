@@ -1,4 +1,4 @@
-# Your Book Name
+# Introduction to the University of Edinburgh, School of GeoSciences Linux Environment
 
 - [Login](login/README.md)
   * [Command Line - GeoSciences Windows](login/login_geosci_windows_cli.md)
@@ -28,5 +28,8 @@
   * [Background Processes](process/background.md)
   * [Monitoring Processes](process/monitoring.md)
   * [Shell Scripting](process/shell.md)
-* [Even More Power with `eddie`](eddie.md)
+- [Even More Power with `eddie`](eddie/README.md)
+  * [Logging onto `eddie`](eddie/eddie_login.md)
+  * [Submitting a Job to `eddie`](eddie/eddie_job.md)
+ 
 * [Quicklook Table](quicklook.md)
