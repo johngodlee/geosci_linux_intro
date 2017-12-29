@@ -1,0 +1,765 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="github.css" type="text/css" />
+</head>
+<body>
+<h1 id="linux-in-geosciences">Linux in GeoSciences</h1>
+<h2 id="table-of-contents">Table of Contents:</h2>
+<ol class="incremental" style="list-style-type: decimal">
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#what">What is UNIX?</a></li>
+<li><a href="#network">The GeoSciences network structure</a></li>
+<li><a href="#login">Logging in via the command line</a></li>
+<li><a href="#basic">The basics</a></li>
+<li><a href="#scratch">Shared resources and Scratch space</a></li>
+<li><a href="#editors">Text editors and pagers</a></li>
+<li><a href="#pipes">Piping and redirecting data</a></li>
+<li><a href="#monitor">Monitoring processes</a></li>
+<li><a href="#background">Running background processes</a></li>
+<li><a href="#scripting">Shell scripting</a></li>
+<li><a href="#download">Downloading files</a></li>
+<li><a href="#printing">Printing in Linux</a></li>
+<li><a href="#gui">Using a graphical interface</a></li>
+<li><a href="#net_drive">Adding network drives to a personal computer</a></li>
+<li><a href="#eddie">Even more computing power with <code>eddie</code></a></li>
+</ol>
+<p><a name="introduction"></a></p>
+<h2 id="introduction">Introduction</h2>
+<p>The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.</p>
+<p>Unlike the Windows operating system, UNIX based operating systems give much more control to the user. The most common and powerful method of interaction with a UNIX based system is through the command line rather than through a windows-like point and click interface. Additionally, much of the software available on UNIX platforms is free and open source, meaning that everybody has access to the code used to create a piece of software, meaning that you know exactly what the program is doing. Having this amount of control over your computing is very useful in academia where research should be entirely <a href="http://www.bioone.org/doi/full/10.1641/0006-3568(2006)56%5B958:RARIE%5D2.0.CO%3B2">reproducible and repeatable</a>. Using a text interface will also give you a lot more creative power to design analyses the way you like.</p>
+<p>Students use the GeoSciences UNIX systems for a variety of tasks, including but not limited to:</p>
+<ul class="incremental">
+<li>Simulation modelling</li>
+<li>GIS and mapping</li>
+<li>Running an email server</li>
+<li>Statistical programming</li>
+</ul>
+<p>While this workshop is not designed to be a definitive reference, it should provide a good introduction from which you can continue to learn about this powerful resource.</p>
+<p>All the introduction materials, including this sheet, can be found at:</p>
+<pre><code>http://www.geos.ed.ac.uk/~gisteac/wkzero</code></pre>
+<h2 id="targets-for-this-session">Targets for this session</h2>
+<p>By the end of this workshop you should be able to:</p>
+<ul class="incremental">
+<li>Log on to any UNIX machine in the School of GeoSciences</li>
+<li>Locate your home directory</li>
+<li>Perform simple file operations on the command line using, <code>ls</code>, <code>cd</code>, <code>mkdir</code>, <code>cp</code>, <code>mv</code>, <code>rm</code></li>
+<li>View plain text files in a number of different ways using pagers and editors</li>
+<li>Find help on commands/programs using <code>man</code> pages</li>
+<li>Download and retrieve data via FTP</li>
+<li>Monitor memory usage, and find out about other users on the system using <code>finger</code>, <code>ps</code>, <code>kill</code></li>
+<li>Search within files using <code>grep</code></li>
+<li>Connect to the GeoSciences Linux server using a graphical client</li>
+<li>Map GeoSciences network drives on your personal computer</li>
+<li>Tell other people how awesome UNIX is</li>
+</ul>
+<p><a name="what"></a></p>
+<h2 id="what-is-unix">What is UNIX?</h2>
+<p>UNIX is a loose family of operating systems that share characteristics and are derived from the original AT&amp;T UNIX OS that was developed by Bell Labs in the 1970s. Many UNIX-like operating systems have arisen since then, most notably, Linux, Android, and macOS.</p>
+<p>The Operating System that most of the GeoSciences UNIX systems run on is called Linux.</p>
+<p><a name="network"></a></p>
+<h2 id="geosciences-network-structure">GeoSciences network structure</h2>
+<p>There are three main ways to access systems running Linux in the School of GeoSciences:</p>
+<ul class="incremental">
+<li>Login directly to a GeoSciences Linux workstation, which access Linux servers by default</li>
+<li>Login to a GeoSciences Windows machine and connect to a Linux server remotely</li>
+<li>Login to a Linux server remotely from your personal computer, when connected to the University VPN</li>
+</ul>
+<p>By far the most common way to access Linux is to use a GeoSciences Windows machine and connect to a Linux server remotely, though using a personal computer or laptop is becoming more popular.</p>
+<center>
+<img src="img/net_struc.png" style="width: 500px;"/>
+</center>
+<p><a name="login"></a></p>
+<h2 id="logging-in-to-the-geosciences-linux-servers-via-the-command-line">Logging in to the GeoSciences Linux servers via the command line</h2>
+<p>Most of the tasks you will need to use a Linux server for can be achieved through a command line interface like the one in the picture below:</p>
+<center>
+<img src="img/cli.png" style="width: 400px;"/>
+</center>
+<p>Choose your method of connecting to the GeoSciences Linux server from the options below and follow the instructions in that section.</p>
+<h3 id="logging-in-from-a-geosciences-windows-machine">Logging in from a GeoSciences Windows machine</h3>
+<p>To connect from a Windows machine to the GeoSciences Linux server you can use PuTTY. PuTTY is a free and open source program that provides a command line interface to allow you to connect remotely to other machines. The PuTTY application is located at: <code>U:\SCE\GEOS\putty.exe</code>. I recommend making a shortcut to it and putting it on your desktop.</p>
+<p>First, open PuTTY and configure the PuTTY session using the instructions below. <code>burn</code> is the name of the GeoSciences Linux server, it's address is <code>burn.geos.ed.ac.uk</code>:</p>
+<ul class="incremental">
+<li>&quot;Host Name (or IP address)&quot; = <code>burn.geos.ed.ac.uk</code></li>
+<li>&quot;Port&quot; = <code>22</code></li>
+<li>&quot;Connection type:&quot; = <code>SSH</code></li>
+<li>In &quot;Category: Connection, SSH&quot; Check <code>Enable X11 forwarding</code> - which allows X window applications to be opened on your desktop (e.g. <code>xeyes</code>, <a name="background">see below</a>)</li>
+</ul>
+<p>Then click &quot;Open&quot; to start the connection, type your UUN (e.g. <code>s1234567</code>) and the password you use to login to MyEd, Windows machines etc.</p>
+<h3 id="from-a-personal-windows-machine">From a personal Windows machine</h3>
+<p>You can also use PuTTY from your own windows machine, you can download it from <a href="https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html">here</a>.</p>
+<p>Make sure you are connected to the University VPN service (<a href="http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn">more information can be found here</a>), then open PuTTY and connect using the same options as the ones above for a GeoSciences Windows machine.</p>
+<h3 id="from-a-personal-macoslinux-machine">From a personal macOS/Linux machine</h3>
+<p>If you have a personal macOS or Linux machine you can use a terminal emulator such as <code>Terminal.app</code> to connect to a University Linux server.</p>
+<p>Open <code>Terminal.app</code> or your terminal emulator of choice and type the following, replacing <code>s1234567</code> with your own UUN:</p>
+<pre><code>ssh -x s1234567@burn.geos.ed.ac.uk</code></pre>
+<p>Press &quot;Enter&quot;, then follow the instructions. When it asks for your password use the one you use to login to MyEd, don't worry if the password doesn't look like it's being typed, the computer is just trying to keep your details secret!</p>
+<p><a name="basic"></a></p>
+<h2 id="the-basics">The basics</h2>
+<h3 id="the-bash-prompt">The bash prompt</h3>
+<p>By this point you should be connected to the Linux <code>burn</code> server using whatever means suits you, if not, go back and try again, using one of the options above. When you first login your terminal window should look something like this:</p>
+<pre><code>[s1234567@burn ~]$ ■</code></pre>
+<p>This innocuous line, known as the bash prompt actually tells us some really useful information:</p>
+<ul class="incremental">
+<li><code>s1234567</code> is obviously your UUN.</li>
+<li><code>burn</code> is the hostname, i.e. the name of the server you are connected to.</li>
+<li><code>~</code> Is the directory you are currently in, <code>~</code> is shorthand for the home directory.</li>
+<li><code>$</code> marks the end of the bash prompt and the start of the space where you can type commands.</li>
+</ul>
+<h3 id="changing-directories">Changing directories</h3>
+<p>Before we continue, it's important to note that the word &quot;directory&quot; is used in the Unix literature to mean the same thing as &quot;folder&quot; on a Windows machine.</p>
+<p>To see what directories and files are inside the current directory type:</p>
+<pre><code>ls</code></pre>
+<p>followed by the <Enter> key. All commands must be followed by the <Enter> key to run them. The <code>ls</code> command should output a list of the directories and files inside the <code>~</code> directory, because that is the directory we are currently in.</p>
+<p>To change to another directory, type <code>cd</code> then the directory name. List the directories in your current directory using <code>ls</code> then pick one and change to it:</p>
+<pre><code>ls
+
+cd Documents</code></pre>
+<p>Notice that the <code>~</code> in the prompt has been replaced with <code>Documents</code>, telling us we are now in the <code>Documents</code> directory. Enter <code>ls</code> again to see that the list of files and directories has also changed, because you are in a different directory.</p>
+<p>The <code>~</code> (tilde character) is shorthand for the <code>home</code> directory. When you log into a Linux system you will automatically be taken to the <code>home</code> directory. The <code>home</code> directory is analogous to your <code>M:</code> drive on a Windows machine. It is a space where you can store personal files that only you can access. The <code>home</code> directory default size is quite small, but can be increased if you need extra space for your research, just <script type="text/javascript">
+<!--
+h='&#x65;&#100;&#46;&#x61;&#x63;&#46;&#x75;&#x6b;';a='&#64;';n='&#x69;&#x73;&#46;&#104;&#x65;&#108;&#112;&#108;&#x69;&#110;&#x65;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'" clas'+'s="em' + 'ail">'+'&#x65;&#x6d;&#x61;&#x69;&#108;&#32;&#x49;&#x53;&#32;&#x73;&#x65;&#114;&#118;&#x69;&#x63;&#x65;&#x73;'+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x65;&#x6d;&#x61;&#x69;&#108;&#32;&#x49;&#x53;&#32;&#x73;&#x65;&#114;&#118;&#x69;&#x63;&#x65;&#x73;&#32;&#40;&#x69;&#x73;&#46;&#104;&#x65;&#108;&#112;&#108;&#x69;&#110;&#x65;&#32;&#x61;&#116;&#32;&#x65;&#100;&#32;&#100;&#x6f;&#116;&#32;&#x61;&#x63;&#32;&#100;&#x6f;&#116;&#32;&#x75;&#x6b;&#x29;</noscript>. As an added bonus the <code>~</code>/<code>home</code>/<code>M:</code> directory is backed up every night, so there is hardly any chance of losing your data when it is stored in this directory.</p>
+<p>To move up one directory e.g. from <code>Documents</code> back to the <code>home</code> directory, type:</p>
+<pre><code>cd ..</code></pre>
+<p>The <code>..</code> two dots are shorthand for the directory directly above the one you are in.</p>
+<p>To jump back to the <code>home</code> directory from anywhere, just type <code>cd</code> without specifying any directory:</p>
+<pre><code>cd</code></pre>
+<p>Try this out by <code>cd</code>ing into a directory of your choice, then jumping back to the <code>home</code> directory using <code>cd</code>.</p>
+<h3 id="creating-directories-and-files">Creating directories and files</h3>
+<p>Just like on a Windows machine, it will be necessary to perform various file operations during your work like moving files, making directories etc. But instead of using a drag and drop interface like on Windows, on <code>burn</code> you can use the command line. To demonstrate some of the simple file operations that you can perform from the command line, return to the home folder (<code>cd</code>) and make a new directory called <code>linux_intro</code> like this:</p>
+<pre><code>mkdir linux_intro</code></pre>
+<p><code>cd</code> into that directory and create three more directories, <code>notes</code>, <code>downloads</code> and <code>data</code>:</p>
+<pre><code>cd linux_intro
+
+mkdir notes
+
+mkdir downloads
+
+mkdir data</code></pre>
+<p>Then create a directory inside the notes directory called <code>wk_1</code>:</p>
+<pre><code>mkdir notes/wk_1</code></pre>
+<p>Notice that I used <code>/</code> to create the <code>wk_1</code> directory inside an existing directory.</p>
+<p>Type <code>tree</code> to check that all the directories have been created. <code>tree</code> gives a nice overview of the directory structure in the directory you are currently in.</p>
+<p>Your <code>tree</code> output should look like this:</p>
+<pre><code>.
+├── data
+├── downloads
+└── notes
+    └── wk_1</code></pre>
+<p><code>cd</code> into the <code>notes</code> directory, then the <code>wk_1</code> directory and create an empty file called <code>notes.txt</code> like this:</p>
+<pre><code>cd ~/linux_intro/notes/wk_1
+
+touch notes.txt</code></pre>
+<p>Notice how instead of using the relative filepath to move into the <code>wk_1</code> directory (e.g. <code>cd wk_1</code>), this time I used the full filepath (<code>~/linux_intro/notes/wk_1</code>) because <code>wk_1</code> isn't directly below my current directory so Linux wouldn't have known which directory I meant.</p>
+<p>Move back to the <code>linux_intro</code> directory and check out the new directory structure you have made by typing:</p>
+<pre><code>cd ../..
+
+tree</code></pre>
+<p>The output of <code>tree</code> should look something like this:</p>
+<div class="figure">
+<img src="tree.png" />
+
+</div>
+<h3 id="moving-files-and-directories">Moving files and directories</h3>
+<p>Next I want to make a copy of my <code>notes.txt</code> file and place it in my <code>home</code> directory, so I have a copy to work on. To do this I can use <code>cp</code>. <code>cp</code> takes two arguments, the first gives the filepath of the file or directory I want to copy (<code>~/linux_intro/notes/wk_1/notes.txt</code>), and the second gives the location of where I want to put the file or directory (<code>~/notes.txt</code>):</p>
+<pre><code>cp ~/linux_intro/notes/wk_1/notes.txt ~/notes.txt</code></pre>
+<p>Actually, after some profound thoughts, I have realised that it would be much more useful if <code>notes.txt</code> was in my <code>Documents</code> directory, so I can move the file using <code>mv</code>:</p>
+<pre><code>cd
+
+mv notes.txt ~/Documents/notes.txt</code></pre>
+<p>Because <code>notes.txt</code> isn't a particularly informative filename, I can also use <code>mv</code> to rename files:</p>
+<pre><code>cd ~/Documents
+
+mv notes.txt linux_notes.txt</code></pre>
+<p>We have done a lot of moving around different directories, which can become confusing. If you ever want to check what directory you are in you can type <code>pwd</code>:</p>
+<pre><code>pwd</code></pre>
+<p>Imagine that I'm done working with <code>~/Documents/linux_notes.txt</code> and want to delete it. I can delete files using <code>rm</code>:</p>
+<pre><code>rm ~/Documents/notes.txt</code></pre>
+<p>But it is important to note that when you delete a file in this way it doesn't get moved to the recycling bin, <strong>IT IS GONE FOREVER!</strong></p>
+<p>I can remove a directory instead of a file by adding the <code>-r</code> flag to <code>rm</code>. In this case I want to remove the <code>data</code> directory:</p>
+<pre><code>cd ~/linux_intro
+
+rm -r data</code></pre>
+<p>Flags can be added to many commands to change their behaviour or add special inputs. A useful flag for the <code>rm</code> command is <code>-i</code>, which asks the user whether they really want to delete the file before deleting it. Once again, the reason this is useful is because <strong><code>rm</code> deletes files irreversibly!</strong> I could delete <code>~/Documents/linux_notes.txt</code> using the <code>-i</code> flag:</p>
+<pre><code>rm -i ~/Documents/linux_notes.txt</code></pre>
+<p>To find out about other flags and their uses you can use the <code>man</code> command followed by the command you want to investigate. This opens the <code>man</code>ual page for that command. While <code>man</code> pages can be a bit dense, they should be your first port of call when investigating what a command does. e.g.:</p>
+<pre><code>man rm</code></pre>
+<p>It's also worth remembering that a quick internet search for a command followed by the word &quot;Linux&quot; or a brief description of your problem will almost definitely yield useful results.</p>
+<h3 id="shared-resources">Shared resources</h3>
+<p>As well as your personal data stored in the <code>home</code> directory, you can access shared data in the <code>/geos</code> directory. This might be the data for a specific course like the Kindrogan field course, or open access data such as shapefiles for Scotland's roads.</p>
+<p>Move to the <code>/geos</code> directory like this:</p>
+<pre><code>cd /geos</code></pre>
+<p>It is important to note that while you can open files in the shared space, it is unlikely that you will have permission to edit them. Instead you can copy them to your <code>home</code> directory using <code>cp</code> to have an editable copy.</p>
+<p>Try this by copying the contents of the <code>/geos/netdata/wkzero</code> directory to the <code>~/linux_intro/downloads</code> directory:</p>
+<pre><code>cd /geos/netdata
+
+cp -r wkzero/ ~/linux_intro/downloads</code></pre>
+<p>Notice how I had to add the <code>-r</code> flag to let <code>cp</code> know that I wanted to copy a directory instead of a file. Also note the <code>/</code> I used to specify that <code>wkzero</code> is a directory, not a file.</p>
+<p><a name="scratch"></a></p>
+<h3 id="scratch-space">Scratch space</h3>
+<p>Another shared space that will be useful is <code>/scratch/s1234567</code>, obviously your scratch space will be named after your UUN. Scratch space offers a very large amount of temporary storage space. It is not backed up so don't leave anything important on there for too long, but it could be useful if you want somewhere to unpack a huge dataset, or create lots of model objects.</p>
+<p>To move to your scratch space just type the following, switching out <code>s1234567</code> with your own UUN:</p>
+<pre><code>cd /scratch/s1234567</code></pre>
+<p><a name="editors"></a></p>
+<h2 id="text-editors-and-pagers">Text editors and pagers</h2>
+<p>Our notes file (<code>~/linux_intro/notes/notes.txt</code>) is still a blank file. Let's fill it with some notes. There are a multitude of terminal based text editors available on the GeoSciences Linux systems. It is often much quicker to edit a text file in the Linux server environment on the command line rather than edit it on a Windows machine and copy it across every time you make a change. Some notable text editors, in my own order from most to least complex are:</p>
+<ul class="incremental">
+<li><code>emacs</code></li>
+<li><code>vim</code></li>
+<li><code>ed</code></li>
+<li><code>nano</code></li>
+</ul>
+<p>Move to the directory where <code>notes.txt</code> is found, then open the <code>notes.txt</code> file using <code>nano</code>, type some text then save and exit using <code>Ctrl-x</code>.</p>
+<pre><code>cd ~/linux_intro/notes/wk_1
+
+nano notes.txt</code></pre>
+<p>We can then use a &quot;pager&quot; program to quickly open the file and view the text we just wrote. Pagers are different from text editors in that they can't be used to edit text, only view it. The advantage of pagers is they are often very quick to open and provide a quick way of skimming through a document. Use the <code>less</code> pager to read the text you just typed using the code below, then type <code>q</code> to exit and return to the terminal:</p>
+<pre><code>less notes.txt</code></pre>
+<p><a name="pipes"></a></p>
+<h2 id="piping-and-redirecting-data">Piping and redirecting data</h2>
+<p><code>cd</code> to the <code>wkzero</code> directory that we previously copied from the shared network space into our personal <code>downloads</code> directory:</p>
+<pre><code>cd ~/linux_intro/downloads/wkzero</code></pre>
+<p>Check what files are in the directory with <code>ls</code> then quickly see what is in <code>jabberwock.txt</code> using <code>less</code>:</p>
+<pre><code>ls
+
+less jabberwock.txt</code></pre>
+<p>We can redirect the contents of one file into another using the <code>&gt;</code> operator. <code>&gt;</code> takes what ever is on the left hand side and puts it into the file on the right hand side. We can add the contents of <code>jabberwock.txt</code> to <code>notes.txt</code> like this:</p>
+<pre><code>cat jabberwock.txt &gt; ~/linux_intro/notes/wk_1/notes.txt</code></pre>
+<p><code>cat</code> merely prints the contents of the file it is given, in this case <code>jabberwock.txt</code>, think of <code>cat</code> as the most simplistic pager. Hopefully you can imagine that the <code>&gt;</code> would be very useful for stringing commands together to manipulate data, then put the output into a text document, much quicker than copying and pasting with a mouse.</p>
+<p>After you have done the above, check that <code>notes.txt</code> contains the new information using cat:</p>
+<pre><code>cd ~/linux_intro/notes/wk_1
+
+cat notes.txt</code></pre>
+<p>A similar operator is the <code>|</code>, also known as a pipe. <code>|</code> takes whatever is on the left and uses it in the command on the right. We will investigate how pipes work using a new command called <code>grep</code>.</p>
+<p>First <code>cd</code> to the <code>wkzero</code> directory:</p>
+<pre><code>cd ~/linux_intro/downloads/wkzero</code></pre>
+<p>Use <code>cat</code> on <code>nation_data.txt</code> to see that it contains a lot of data:</p>
+<pre><code>cat nation_data.txt</code></pre>
+<p>But I want to find only the lines that have information about &quot;Canada&quot;. I can use <code>grep</code> to filter out just those lines, then present that data in a pager like <code>less</code> like this:</p>
+<pre><code>cat nation_data.txt | grep &quot;Canada&quot; | less</code></pre>
+<p>Just to recap, I took the contents of <code>nation_data.txt</code> (<code>cat nation_data.txt</code>), then fed that to the grep command to look only for lines containing the word <code>Canada</code> (<code>grep Canada</code>), then fed the filtered lines to <code>less</code>, my pager of choice. It's easy to see how this could become a really powerful tool for quickly sifting through data to look for the interesting bits.</p>
+<p><code>grep</code> can take many different types of arguments, I recommend reading the <code>man</code> page for <code>grep</code> or look at some online tutorials to see what it can really do.</p>
+<p><a name="monitor"></a></p>
+<h2 id="monitoring-processes">Monitoring processes</h2>
+<p>On the GeoSciences Linux servers it is quite likely that other users will be working at the same time as you. You can see what everybody else is doing, and everybody else can see what you are doing. It is useful to know what processes you have running so that you can terminate processes, or manage your memory usage. It might also be useful to see what other people are doing that is using up all the memory on the server, making your programs run slowly!</p>
+<p>To see what other users are doing, use the <code>ps</code> command. Additionally, we will use the <code>-a</code> flag to show everybodys processes and <code>-f</code> flag to show the full amount of information for each process:</p>
+<pre><code>ps -af</code></pre>
+<p>This spits out a whole load of information. The most important columns are <code>UID</code> which shows the username of who is running each process (try to find your username in the list), <code>PID</code> is the ID number of the process, which you can use in other commands which you will learn about soon, and finally the <code>CMD</code> column, which shows what the process is.</p>
+<p>Every user on <code>burn</code> is allocated a limited amount of memory for their operations. To check your usage you can use the following:</p>
+<pre><code>quota -s</code></pre>
+<p>Similarly, every user is given an amount of disk space to store files. You can check your disk usage by typing:</p>
+<pre><code>du –sh</code></pre>
+<p><code>du</code> can also give you a breakdown of how much space each file and directory is taking up in your <code>~</code> directory. You can check this by typing:</p>
+<pre><code>du -sh ~/*</code></pre>
+<p>The <code>*</code> symbol is a special character that returns everything within a given directory. You can also use <code>*</code> to avoid typing out a long file name. For instance, imagine I had a file called <code>really_long_file_name_2017_8_1.txt</code>, I could view the contents of that file with <code>cat</code> simply by typing:</p>
+<pre><code>cat *2017_8_1.txt</code></pre>
+<p>This is assuming however that I have no other files or directories in that directory with <code>2017_8_1.txt</code> in their name.</p>
+<p><a name="background"></a></p>
+<h2 id="running-background-processes">Running background processes</h2>
+<p>Sometimes a process will continue running indefinitely and not allow you to use the terminal until you stop it. This is especially true if you start a graphical program from the command line, e.g. a web browser.</p>
+<p>To allow you to use the terminal while this process is happening you can use the <code>&amp;</code> operator, to indicate that the process should be a background process. For example, if I run <code>xeyes</code>, but want to keep using the terminal while this program is open I can type:</p>
+<pre><code>xeyes &amp;</code></pre>
+<p>This will give the process ID number (<code>PID</code>) of the command and then let me continue to use the terminal.</p>
+<p>Run <code>xeyes &amp;</code> then run <code>ps -af</code> to see if you can find the process in the list, the <code>PID</code> shuld be the same as the one you were shown in the terminal when you typed the command. If you are feeling brave, you could use the <code>grep</code> command from earlier to find only the lines with your username (<code>UID</code>):</p>
+<pre><code>ps -af | grep &quot;s1234567&quot;</code></pre>
+<p>I can kill the program either by clicking the cross in the <code>xeyes</code> window like a normal program, or I can type:</p>
+<pre><code>kill -9 &lt;PID&gt;</code></pre>
+<p>Where <PID> is the ID number that I was presented with earlier in the terminal when I first started the <code>xeyes</code> program.</p>
+<p>It is useful to know that if you run a program in the background by using the <code>&amp;</code> operator, you can use the <code>exit</code> command to end your remote session and the program will continue to run, even though you're not there or connected to <code>burn</code>. This could be very useful if you have a huge data crunching program running and you want to go home and sleep.</p>
+<p><a name="scripting"></a></p>
+<h2 id="shell-scripting">Shell scripting</h2>
+<p>As you start to learn terminal commands and do more computing in the Linux environment you may find that you perform the same set of actions over and over. For example, if you get regular data files sent to you from some distant fieldsite, you may want to manipulate that data in the same way every time. Shell scripting allows you to save a set of commands for later use. Let's make a script that allows us to <code>grep</code> for lines containing a given word in the <code>nation_data.txt</code> file and any other file in the future. <code>cd</code> to the <code>home</code> directory and open the <code>nano</code> text editor:</p>
+<pre><code>cd
+
+nano</code></pre>
+<p>Shell scripts should always start with the following code, also known as a &quot;shebang&quot;:</p>
+<pre><code>#!/bin/bash</code></pre>
+<p>This tells the operating system that we are using the <code>bash</code> language, which is the language we have been using this whole time to interact with the Linux server! Google if you are interested in learning more about <code>bash</code>.</p>
+<p>Copy the following into nano to create a script that look like this:</p>
+<pre><code>#!/bin/bash
+
+ls
+
+read -p &#39;File name to search through: &#39; file_name
+
+read -p &#39;Word to search for: &#39; word_name
+
+cat $file_name | grep $word_name | less</code></pre>
+<p>On the line after the shebang we have asked to show the files in the current directory using <code>ls</code>.</p>
+<p>Then on the next line we use <code>read -p</code> to prompt the user for the name of a file from that list of files.</p>
+<p>On the next line we prompt the user for a word that they want to search for.</p>
+<p>And finally we include all these variables into a command that searches our nominated file for our nominated word and display it in <code>less</code>. The variables we created earlier in the script (<code>word_name</code>, <code>file_name</code>) can be called later in the script by prefixing their name with a <code>$</code> (<code>$word_name</code>, <code>$file_name</code>)</p>
+<p>Save the file to <code>~/grep_file.sh</code>. The <code>.sh</code> file extension stands for <code>sh</code>ell.</p>
+<p>To get the script to run as a script and not just a text file we need to make it &quot;executable&quot;.</p>
+<p>In the terminal type:</p>
+<pre><code>chmod +x ~/grep_file.sh</code></pre>
+<p>To test that the script works, <code>cd</code> into the <code>wkzero</code> directory:</p>
+<pre><code>cd ~/linux_intro/downloads/wkzero</code></pre>
+<p>Then enter:</p>
+<pre><code>~/./grep_file.sh</code></pre>
+<p>First, the script should <code>ls</code> the current directory, then ask for us to nominate a file, then for a word to <code>grep</code> for. Finally, this should output all the lines containing our nominated word into <code>less</code>.</p>
+<p>Note that when I called the shell script I had to prefix the script name (<code>grep_file.sh</code>) with <code>./</code>, this is a finicky requirement for all user made scripts. If you really want to know why this is necessary, read <a href="http://www.linfo.org/dot_slash.html">this</a> and <a href="https://www.stackoverflow.com/q/6331075/5622415">this</a>. Warning, very dense and potentially boring.</p>
+<p><a name="download"></a></p>
+<h2 id="downloading-files">Downloading files</h2>
+<h3 id="downloading-from-a-file-server-using-ftp-file-transfer-programprotocol">Downloading from a file server using <code>ftp</code> (File Transfer Program/Protocol)</h3>
+<p><code>ftp</code> is a program used to transfer files from one computer to another. This utility could be very useful if you need to grab data from the GeoSciences ftp server (<code>ftp.geos.ed.ac.uk</code>), or from some other server. As an example, let's <code>cd</code> to <code>~/linux_intro/wkzero/downloads</code>:</p>
+<pre><code>cd ~/linux_intro/wkzero/downloads</code></pre>
+<p>The open the <code>ftp</code> program:</p>
+<pre><code>ftp</code></pre>
+<p>Your prompt should change to <code>ftp&gt;</code>.</p>
+<p>Now we can connect to a specific <code>ftp</code> server:</p>
+<pre><code>open ftp.geos.ed.ac.uk</code></pre>
+<p>As requested when you connect, type <code>anonymous</code> as your name.</p>
+<p>Again as requested, enter your university email address (e.g. <code>s1234567@sms.ed.ac.uk</code>) as your password.</p>
+<p>As in a normal Linux environment, we can list the files in the current directory:</p>
+<pre><code>ls</code></pre>
+<p><code>cd</code> to the <code>pub/geos</code> directory:</p>
+<pre><code>cd pub/geos/wkzero</code></pre>
+<p><code>ls</code> to see what files are in this directory:</p>
+<pre><code>ls</code></pre>
+<p>Then download <code>jefferson.tar.gz</code> using <code>get</code>:</p>
+<pre><code>get jefferson.tar.gz</code></pre>
+<p>The file will be downloaded to the directory where we started <code>ftp</code> from, <code>~/linux_intro/wkzero/downloads</code>.</p>
+<p>Now close the connection using <code>bye</code>:</p>
+<pre><code>bye</code></pre>
+<p>Use <code>ls</code> to check that <code>jefferson.tar.gz</code> is now in our personal directory.</p>
+<h3 id="compressing-and-uncompressing-files">Compressing and uncompressing files</h3>
+<p>The file we just downloaded (<code>jefferson.tar.gz</code>) came as a compressed binary file. A compressed file takes up less drive space than a raw file, so is ideal for sending data over the network, but we can't do anything with this file until we uncompress it. We know it is a compressed file because the file extension contains <code>.gz</code>. We can use the GunZip program (<code>gzip</code>) to uncompress the file:</p>
+<pre><code>gzip -d jefferson.tar.gz</code></pre>
+<p>Note that the <code>-d</code> flag was used to tell <code>gzip</code> that we want to decompress the file. Now <code>ls</code> to see that <code>jefferson.tar.gz</code> has become <code>jefferson.tar</code>.</p>
+<p>Now you have uncompressed the file, but it is still archived – it is one file that contains many other files, like a <code>.zip</code> file. To remove this last layer of compression and make the files usable we can use <code>tar</code>:</p>
+<pre><code>tar -xf jefferson.tar</code></pre>
+<p>The <code>-x</code> flag tells <code>tar</code> that we want to extract files from an archive. The <code>-f</code> flag tells <code>tar</code> that we will provide a filename as the archive to extract from.</p>
+<p>If you encounter <code>.zip</code> files instead of <code>.tar</code> files you can use the <code>zip</code> and <code>unzip</code> programs to compress and uncompress them. The following compresses <code>jefferson.txt</code> into <code>jefferson.zip</code>:</p>
+<pre><code>zip jefferson.zip jefferson.txt</code></pre>
+<p>The following unzips the contents of <code>jefferson.zip</code> and places it in a directory called <code>jefferson_2</code></p>
+<pre><code>unzip jefferson.zip –d jefferson_2</code></pre>
+<h3 id="downloading-files-from-webpages-using-wget-and-curl">Downloading files from webpages using <code>wget</code> and <code>curl</code></h3>
+<p>It is becoming more common to download data from hosted webpages rather than from dedicated ftp file servers. You can download from webpages using two programs, <code>curl</code> or <code>wget</code>. Both do largely the same thing but offer some different advanced functions that we won't get into today. Just be aware that they exist and are useful for different tasks. For now, we can download some data from the GeoSciences website:</p>
+<pre><code>cd ~/linux_intro/wkzero/downloads
+
+curl http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols.txt -o protocols.txt
+
+wget http://www.geos.ed.ac.uk/~gisteac/wkzero/protocols_all.html -r</code></pre>
+<p>The <code>-r</code> flag in <code>wget</code> downloads all the linked webpages inside the file specified for download as well as that file.</p>
+<p>Use <code>ls</code> to check that the files were downloaded correctly into <code>~/linux_intro/wkzero/downloads</code>.</p>
+<p><a name="printing"></a></p>
+<h2 id="printing-files-from-the-command-line">Printing files from the command line</h2>
+<p>To quickly print a file from the command line you can use the <code>lp</code> suite of commands.</p>
+<p><code>lp file.txt</code> prints <code>file.txt</code></p>
+<p><code>lpq</code> shows your print queue. Notice that each print job is given a job number.</p>
+<p><code>lprm 23456</code> removes job number <code>23456</code> from the queue.</p>
+<p>Once you have used <code>lp</code> to print a file, you can go to any GeoSciences printer and print the file on A4 paper as from a Windows machine.</p>
+<p><a name="gui"></a></p>
+<h2 id="logging-on-using-a-graphical-interface">Logging on using a graphical interface</h2>
+<p>Some programs may require a graphical user interface (GUI). For these programs to work you will need to run a desktop on the linux servers, like the one in the picture below:</p>
+<center>
+<img src="img/gui.png" style="width: 500px;"/>
+</center>
+<p>Log on to <code>burn</code> using a graphical interface using one of the methods below, then have a look around the desktop, you will see some applications that are familiar from the Windows machines, and some new applications. Also notice that you can open a command line interface and interact with the server just as you did earlier on in the workshop by clicking the button of the black computer screen:</p>
+<center>
+<img src="img/gui_term.png" style="width: 500px;"/>
+</center>
+<h4 id="from-a-geosciences-windows-machine">From a GeoSciences Windows machine</h4>
+<p>Open &quot;NX Connection Wizard&quot; from the Start menu.</p>
+<p>Configure the connection like so:</p>
+<ul class="incremental">
+<li>&quot;Session&quot; = <code>burn.geos.ed.ac.uk</code></li>
+<li>&quot;Host&quot; = <code>burn.geos.ed.ac.uk</code></li>
+<li>&quot;Port&quot; = <code>22</code></li>
+<li>&quot;Select type of your internet connection.&quot; = <code>ADSL</code></li>
+<li>&quot;Client&quot; = <code>Unix</code></li>
+<li>&quot;Desktop environment&quot; = <code>KDE</code> - <strong>This can be changed</strong></li>
+<li>&quot;Select size of your remote desktop&quot; = <code>Available area</code> - <strong>This can be changed</strong></li>
+</ul>
+<p>Then when the login window appears, login with your UUN and the password you use to login to MyEd.</p>
+<h4 id="from-a-personal-windowsmacoslinux-machine">From a personal Windows/macOS/Linux machine</h4>
+<p>Download NoMachine from (https://www.nomachine.com/download)[https://www.nomachine.com/download]</p>
+<p>Connect to the University VPN (<a href="http://www.ed.ac.uk/information-services/computing/desktop-personal/vpn">more information can be found here</a>).</p>
+<p>Open NoMachine</p>
+<p>Create a new connection:</p>
+<center>
+<img src="img/gui_term.png" style="width: 500px;"/>
+</center>
+<p>Select Protocol: <code>SSH</code></p>
+<center>
+<img src="img/per_ssh.png" style="width: 250px;"/>
+</center>
+<p>Type Host: <code>nx.geos.ed.ac.uk</code>, Port: <code>22</code></p>
+<center>
+<img src="img/per_host.png" style="width: 500px;"/>
+</center>
+<p>Select &quot;Use NoMachine login&quot;</p>
+<center>
+<img src="img/per_log.png" style="width: 500px;"/>
+</center>
+<p>Make sure &quot;Use an alternate server key&quot; is left unchecked and blank</p>
+<center>
+<img src="img/per_key.png" style="width: 300px;"/>
+</center>
+<p>Select &quot;Don't use a proxy&quot;</p>
+<center>
+<img src="img/per_proxy.png" style="width: 500px;"/>
+</center>
+<p>Give the connection a sensible name</p>
+<p>Select the new connection and click <code>Connect</code> and select a desktop environment such as <code>KDE</code>. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.</p>
+<center>
+<img src="img/per_desktop.png" style="width: 500px;"/>
+</center>
+<p>When prompted for a password use the password you use to login to MyEd.</p>
+<center>
+<img src="img/per_pass.png" style="width: 500px;"/>
+</center>
+<p><a name="net_drive"></a></p>
+<h1 id="adding-network-drives-to-your-personal-computer">Adding network drives to your personal computer</h1>
+<p>As well as accessing your <code>M:</code> drive through the command line, you can add it as a network drive to be accessed by the file explorer on your personal computer.</p>
+<h2 id="adding-a-network-drive-on-a-mac">Adding a network drive on a Mac</h2>
+<p>Make sure you are connected to the University VPN.</p>
+<p>Open <code>Finder.app</code>, Click <code>Connect to server ...</code> in the <code>Go</code> menu at the top of the screen. In the server address type:</p>
+<pre><code>smb://students.geos.ed.ac.uk/s1234567</code></pre>
+<p>replacing <code>s1234567</code> with your own UUN. Click the <code>+</code> button to add the address as a favourite, then select it and click <code>Connect</code>.</p>
+<p>When prompted for your username and password, replace any username that has been autofilled with your UUN and use the password that you use to login to MyEd and the Windows machines.</p>
+<p>You should now be taken to your <code>M:</code> drive in <code>Finder.app</code> and be able to move files around and add things from your personal computer easily.</p>
+<p>You can use the same method as above to add the &quot;Research DataStore&quot;, which gives every research student and staff member 500GB of backed up storage space. The addressto add is:</p>
+<pre><code>smb://csce.datastore.ed.ac.uk/csce/geos/users/s1234567</code></pre>
+<p>replacing <code>s1234567</code> with your UUN.</p>
+<h2 id="adding-a-network-drive-on-windows">Adding a network drive on Windows</h2>
+<p>Make sure you are connected to the University VPN.</p>
+<p>Click <code>Start</code>, <code>Computer</code>.</p>
+<p>Click <code>Map Network Drive</code></p>
+<p>Pick an available letter, e.g. <code>G</code></p>
+<p>Enter the folder address as:</p>
+<pre><code>\\students.geos.ed.ac.uk\s1234567</code></pre>
+<p>replacing <code>s1234567</code> with your own UUN.</p>
+<p>You can use the same method as above to add the &quot;Research DataStore&quot;, which gives every research student and staff member 500GB of backed up storage space. The address to add is:</p>
+<pre><code>\\csce.datastore.ed.ac.uk\csce\geos\users\s1234567</code></pre>
+<p>replacing <code>s1234567</code> with your own UUN.</p>
+<p><a name="eddie"></a></p>
+<h2 id="logging-onto-the-university-of-edinburgh-cluster-computer---eddie">Logging onto the University of Edinburgh cluster computer - <code>eddie</code></h2>
+<p>While <code>burn.geos.ed.ac.uk</code> is great for relatively light computing activities, you might find for bigger projects such as rendering extremely detailed maps, or running a large simulation model that the computing power in <code>burn</code> is just not enough. This lack of processing power becomes especially apparent when many people are using <code>burn</code> at the same time.</p>
+<p>If you find you need the extra computing power you can freely logon to the University of Edinburgh cluster computer, nicknamed <code>eddie</code>. To log on, first login to <code>burn</code> using your chosen method from the ones we covered earlier, then in a terminal window type:</p>
+<pre><code>ssh eddie</code></pre>
+<p><code>eddie</code> provides a number of storage spaces, just like <code>burn</code>. Your personal space (2 GB) is in:</p>
+<pre><code>/home/s1234567</code></pre>
+<p>You can request a group datastore (200 GB) from <a href="mailto:is.helpline.ed.ac.uk">is.helpline.ed.ac.uk</a>. After it is granted you can find it at:</p>
+<pre><code>/exports/&lt;COLLEGE&gt;/eddie/&lt;SCHOOL&gt;/groups/&lt;GROUP NAME&gt;</code></pre>
+<p>As on <code>burn</code>, you can find temporary scratch space (20-50 TB) at:</p>
+<pre><code>/exports/eddie/scratch/&lt;UUN&gt;</code></pre>
+<p>The most common method of submitting computing work to <code>eddie</code> is as a batch job. To do this you must write a <code>jobscript.sh</code> bash script which calls any computation jobs.</p>
+<p>To submit a jobscript you can use <code>qsub</code>:</p>
+<pre><code>qsub jobscript.sh</code></pre>
+<p>Here is an example jobscript, which simply loads python then runs another python script:</p>
+<pre><code>#!/bin/sh
+# Grid Engine options (lines prefixed with #$)
+#$ -N hello
+#$ -cwd
+#$ -l h_rt=00:05:00
+#$ -l h_vmem=1G
+#  These options are:
+#  job name: -N
+#  use the current working directory: -cwd
+#  runtime limit of 5 minutes: -l h_rt
+#  memory limit of 1 Gbyte: -l h_vmem
+
+# Initialise the environment modules
+. /etc/profile.d/modules.sh
+
+# Load Python
+module load Python/3.4.3
+
+# Run the program
+./hello.py</code></pre>
+<p>You can find more information on using <code>eddie</code> <a href="https://www.wiki.ed.ac.uk/display/ResearchServices/Quickstart">here</a>.</p>
+<h3 id="hopefully-this-workshop-has-informed-you-of-some-of-the-useful-things-you-can-do-with-the-geosciences-linux-computing-environment-and-encouraged-you-to-think-about-how-this-powerful-technology-could-improve-your-research-while-at-the-university-of-edinburgh.">Hopefully this workshop has informed you of some of the useful things you can do with the GeoSciences Linux computing environment and encouraged you to think about how this powerful technology could improve your research while at the University of Edinburgh.</h3>
+<h3 id="below-is-a-concise-table-with-the-commands-used-in-this-workshop-for-future-reference.">Below is a concise table with the commands used in this workshop, for future reference.</h3>
+<style type="text/css">
+.tg {border-collapse:collapse;border-spacing:0}
+.tg th{border-style:solid;border-width:1px;word-break:normal;padding:10px 5px}
+</style>
+<table class="tg">
+<tr>
+<th>
+Command
+</th>
+<th>
+Function
+</th>
+<th>
+Example(s)
+</th>
+</tr>
+<tr>
+<th>
+<code>ls</code>
+</th>
+<th>
+List files/directories in the current directory
+</th>
+<th>
+<code>ls</code><br><code>ls ~/Desktop/dir</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>cd</code>
+</th>
+<th>
+Change the directory
+</th>
+<th>
+<code>cd Desktop</code><br><code>cd ~/Desktop/GIS</code><br><code>cd ..</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>cp</code>
+</th>
+<th>
+Copy a file/directory
+</th>
+<th>
+<code>cp file.txt ~/Desktop/file.txt</code><br><code>cp file.txt file_2.txt</code><br><code>cp GIS/ ~/Desktop/GIS_2</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>mv</code>
+</th>
+<th>
+Move a file/directory
+</th>
+<th>
+<code>mv file.txt ~/Desktop/file.txt</code><br><code>mv file.txt file_2.txt</code><br><code>mv GIS/ ~/Desktop/GIS</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>mkdir</code>
+</th>
+<th>
+Make a new directory
+</th>
+<th>
+<code>mkdir ~/Desktop/GIS</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>pwd</code>
+</th>
+<th>
+Get the current directory
+</th>
+<th>
+<code>pwd</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>rm</code>
+</th>
+<th>
+Remove a file/directory
+</th>
+<th>
+<code>rm file.txt</code><br><code>rm -r ~/Desktop/GIS</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>ssh</code>
+</th>
+<th>
+Make a remote connection to another computer
+</th>
+<th>
+<code>ssh -x s1234567@burn.geos.ed.ac.uk</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>man</code>
+</th>
+<th>
+Display the manual page for a command
+</th>
+<th>
+<code>man rm</code><br><code>man cd</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>nano</code>
+</th>
+<th>
+Open the <code>nano</code> text editor
+</th>
+<th>
+<code>nano file.txt</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>cat</code>
+</th>
+<th>
+Print the contents of a file in the terminal
+</th>
+<th>
+<code>cat file.txt</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>ps</code>
+</th>
+<th>
+Display information on current processes
+</th>
+<th>
+<code>ps -af</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>quota</code>
+</th>
+<th>
+Show memory allocation usage
+</th>
+<th>
+<code>quota -s</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>du</code>
+</th>
+<th>
+Show current disk usage
+</th>
+<th>
+<code>du -sh ~/Documents/*</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>kill</code>
+</th>
+<th>
+Terminate a process
+</th>
+<th>
+<code>kill -9 34673</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>chmod</code>
+</th>
+<th>
+Alter the attributes of a file
+</th>
+<th>
+<code>chmod +x file.sh</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>ftp</code>
+</th>
+<th>
+Open the ftp program for downloading files from external servers
+</th>
+<th>
+<code>ftp</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>gzip</code>
+</th>
+<th>
+Un/compress a <code>.gz</code> file
+</th>
+<th>
+<code>gzip -d file.gz</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>tar</code>
+</th>
+<th>
+Un/archive a <code>.tar</code> file
+</th>
+<th>
+<code>tar -xf file.tar</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>zip</code>/<code>unzip</code>
+</th>
+<th>
+Un/zip <code>.zip</code> files
+</th>
+<th>
+<code>zip archive.zip file.txt file_2.txt</code><br><code>unzip archive.zip folder</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>curl</code>/<code>wget</code>
+</th>
+<th>
+Download files from webpages
+</th>
+<th>
+<code>curl http://www.geos.ed.ac.uk/protocols.txt -o protocols.txt</code><br><code>wget http://www.geos.ed.ac.uk/page.html -r</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>lp</code>
+</th>
+<th>
+Print files
+</th>
+<th>
+<code>lp file.txt</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>lpq</code>
+</th>
+<th>
+Show the print queue
+</th>
+<th>
+<code>lpq</code>
+</th>
+</tr>
+<tr>
+<th>
+<code>lprm</code>
+</th>
+<th>
+Remove a file from print queue
+</th>
+<th>
+<code>lprm 46745</code>
+</th>
+</tr>
+</table>
+</body>
+</html>

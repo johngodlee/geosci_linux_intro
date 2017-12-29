@@ -1,7 +1,5 @@
 # Quicklook command table
 
-This table contains a list of commands used in this workshop, with descriptions and examples.
-
 <style type="text/css">
 .tg {border-collapse:collapse;border-spacing:0}
 .tg th{border-style:solid;border-width:1px;word-break:normal;padding:10px 5px}

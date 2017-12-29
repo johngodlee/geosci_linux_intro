@@ -1,4 +1,4 @@
-# Even more power with `eddie`
+# Even More Power with `eddie`
 
 For especially intensive jobs, instead of using `burn.geos.ed.ac.uk` you could use `eddie` the University of Edinburh's cluster computer.
 

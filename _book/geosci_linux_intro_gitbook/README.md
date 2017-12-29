@@ -1,6 +1,4 @@
-# University of Edinburgh <br> School of GeoSciences Linux Environment
-
-## Introduction
+# Introduction
 
 The purpose of this workshop is to familiarise yourself with the UNIX based computing systems in the School of GeoSciences.
 

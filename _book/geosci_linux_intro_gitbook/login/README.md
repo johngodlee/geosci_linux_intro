@@ -1,4 +1,4 @@
-# Logging into the GeoSciences Linux system
+# Logging in to the GeoSciences Linux system
 
 There are three main ways to access systems running Linux in the School of GeoSciences:
 
