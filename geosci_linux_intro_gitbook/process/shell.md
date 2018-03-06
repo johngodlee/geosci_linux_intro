@@ -1,6 +1,16 @@
 # Shell scripting
 
-As you start to learn terminal commands and do more computing in the Linux environment you may find that you perform the same set of actions over and over. For example, if you get regular data files sent to you from some distant fieldsite, you may want to manipulate that data in the same way every time. Shell scripting allows you to save a set of commands for later use. Let's make a script that allows us to `grep` for lines containing a given word in the `nation_data.txt` file and any other file in the future. `cd` to the `home` directory and open the `nano` text editor:
+As you start to learn command line commands and do more computing in the Linux environment you may find that you perform the same set of actions over and over. For example, if you get regular data files sent to you from some distant fieldsite, you may want to manipulate that data in the same way every time. Shell scripting allows you to save a set of commands for later use. Let's make a script that allows us to search (`grep`) for lines containing a given word in the `nation_data.txt` file and any other file in the future. 
+
+If you haven't already done so, copy the `wkzero` directory from the GeoSciences shared drive to your `~` directory, then move to that directory:
+
+```
+cd /geos/netdata
+
+cp -r wkzero/ ~
+```
+
+Then `cd` to the `home` directory and open the `nano` text editor:
 
 ```
 cd
@@ -36,9 +46,9 @@ Then on the next line we use `read -p` to prompt the user for the name of a file
 
 On the next line we prompt the user for a word that they want to search for.
 
-And finally we include all these variables into a command that searches our nominated file for our nominated word and display it in `less`. The variables we created earlier in the script (`word_name`, `file_name`) can be called later in the script by prefixing their name with a `$` (`$word_name`, `$file_name`)
+And finally we include all these variables into a command that searches our nominated file for our nominated word and displays the reuslts in `less`. The variables we created earlier in the script from the user input (`word_name`, `file_name`) can be called later in the script by prefixing their name with a `$` (`$word_name`, `$file_name`)
 
-Save the file to `~/grep_file.sh`. The `.sh` file extension stands for `sh`ell.
+Save the file to `~/grep_file.sh` using `Ctrl-x`. The `.sh` file extension stands for `sh`ell.
 
 To get the script to run as a script and not just a text file we need to make it "executable".
 
@@ -51,7 +61,7 @@ chmod +x ~/grep_file.sh
 To test that the script works, `cd` into the `wkzero` directory:
 
 ```
-cd ~/linux_intro/downloads/wkzero
+cd ~/wkzero
 ```
 
 Then enter:

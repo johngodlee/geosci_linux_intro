@@ -1,4 +1,4 @@
-# Logging in to a GUI from a personal Windows/Mac/Linux machine
+# Logging in to a Graphical User Interface (GUI) from a personal Windows/Mac/Linux machine
 
 Download NoMachine from (https://www.nomachine.com/download)[https://www.nomachine.com/download]
 
@@ -8,7 +8,7 @@ Open NoMachine
 
 Create a new connection:
 
-<center> <img src="../img/gui_term.png" style="width: 500px;"/> </center>
+<center> <img src="../img/per_new.png" style="width: 500px;"/> </center>
 
 Select Protocol: `SSH`
 
@@ -32,10 +32,10 @@ Select "Don't use a proxy"
 
 Give the connection a sensible name
 
-Select the new connection and click `Connect` and select a desktop environment such as `KDE`. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.
+Select the new connection from the list on the main menu, click `Connect` and select a desktop environment such as `KDE`. Desktop environments merely affect the way the desktop is presented, the colour of the window borders and application icons etc. All the underlying functionality of Linux will remain exactly the same regardless of the desktop environment.
 
 <center> <img src="../img/per_desktop.png" style="width: 500px;"/> </center>
 
-When prompted for a password use the password you use to login to MyEd.
+When prompted for a username and password enter your UUN (e.g. `s1234567`) and use the password you use to login to MyEd.
 
 <center> <img src="../img/per_pass.png" style="width: 500px;"/> </center>

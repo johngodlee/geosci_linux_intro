@@ -1,12 +1,29 @@
 # Piping and redirecting data
 
-`cd` to the `wkzero` directory that we previously copied from the shared network space into our personal `downloads` directory:
+More complex operations often require moving data between files, manipulating it, and putting it in a summary file, or something like that. A simple way to do this would be to copy the text, then paste it into the next file, but this is laborious and removes any possibility of being ableto automate the process. Instead, you can use pipes!
+
+
+If you haven't already, copy (`cp`) the `wkzero` directory from the GeoSciences shared space into your `~` directory like so:
 
 ```
-cd ~/linux_intro/downloads/wkzero
+cd /geos/netdata
+
+cp -r wkzero/ ~
 ```
 
-Check what files are in the directory with `ls` then quickly see what is in `jabberwock.txt` using `less`:
+Then create a blank file called `notes.txt` in your `~` directory:
+
+```
+touch ~/notes.txt
+```
+
+Then `cd` to the `wkzero` directory:
+
+```
+cd ~/wkzero
+```
+
+Check what files are in the directory with `ls` then quickly see what is in `jabberwock.txt` using the `less` pager:
 
 ```
 ls
@@ -17,15 +34,15 @@ less jabberwock.txt
 We can redirect the contents of one file into another using the `>` operator. `>` takes what ever is on the left hand side and puts it into the file on the right hand side. We can add the contents of `jabberwock.txt` to `notes.txt` like this:
 
 ```
-cat jabberwock.txt > ~/linux_intro/notes/wk_1/notes.txt
+cat jabberwock.txt > ~/notes.txt
 ```
 
-`cat` merely prints the contents of the file it is given, in this case `jabberwock.txt`, think of `cat` as the most simplistic pager. Hopefully you can imagine that the `>` would be very useful for stringing commands together to manipulate data, then put the output into a text document, much quicker than copying and pasting with a mouse.
+`cat` merely prints the contents of the file it is given, in this case `jabberwock.txt`. Think of `cat` as the most simplistic pager. Hopefully you can imagine that the `>` would be very useful for stringing commands together to manipulate data, then put the output into a text document, much quicker than copying and pasting with a mouse.
 
 After you have done the above, check that `notes.txt` contains the new information using cat:
 
 ```
-cd ~/linux_intro/notes/wk_1
+cd ~
 
 cat notes.txt
 ```
@@ -35,7 +52,7 @@ A similar operator is the `|`, also known as a pipe. `|` takes whatever is on th
 First `cd` to the `wkzero` directory:
 
 ```
-cd ~/linux_intro/downloads/wkzero
+cd ~/wkzero
 ```
 
 Use `cat` on `nation_data.txt` to see that it contains a lot of data:

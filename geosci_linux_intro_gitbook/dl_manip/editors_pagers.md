@@ -1,6 +1,12 @@
 ## Text editors and pagers
 
-Our notes file (`~/linux_intro/notes/notes.txt`) is still a blank file. Let's fill it with some notes. There are a multitude of terminal based text editors available on the GeoSciences Linux systems. It is often much quicker to edit a text file in the Linux server environment on the command line rather than edit it on a Windows machine and copy it across every time you make a change. Some notable text editors, in my own order from most to least complex are:
+Create a file using this command:
+
+```
+~/notes.txt
+```
+
+Currently this file is completely blank, but what if you want to fill it with text or data? There are a multitude of command line based text editors available on the GeoSciences Linux systems. It is often much quicker to edit a text file in the Linux server environment on the command line rather than editing it on a Windows machine and copy it across every time you make a change. Some notable text editors, in my own order from most to least complex are:
 
 - `emacs`
 - `vim`
@@ -10,7 +16,7 @@ Our notes file (`~/linux_intro/notes/notes.txt`) is still a blank file. Let's fi
 Move to the directory where `notes.txt` is found, then open the `notes.txt` file using `nano`, type some text then save and exit using `Ctrl-x`.
 
 ```
-cd ~/linux_intro/notes/wk_1
+cd ~/notes.txt
 
 nano notes.txt
 ```

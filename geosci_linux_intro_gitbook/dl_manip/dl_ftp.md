@@ -1,9 +1,9 @@
 # Downloading from a file server using `ftp` (File Transfer Program/Protocol)
 
-`ftp` is a program used to transfer files from one computer to another. This utility could be very useful if you need to grab data from the GeoSciences ftp server (`ftp.geos.ed.ac.uk`), or from some other server. As an example, let's `cd` to `~/linux_intro/wkzero/downloads`:
+`ftp` is a program used to transfer files from one computer to another. This utility could be very useful if you need to grab data from the GeoSciences ftp server (`ftp.geos.ed.ac.uk`), or from some other server. As an example, let's first `cd` to `~/Downloads`, which is where we want to download files to:
 
 ```
-cd ~/linux_intro/wkzero/downloads
+cd ~/Downloads
 ```
 
 The open the `ftp` program:
@@ -12,7 +12,7 @@ The open the `ftp` program:
 ftp
 ```
 
-Your prompt should change to `ftp>`.
+Your bash prompt should change to `ftp>`.
 
 Now we can connect to a specific `ftp` server:
 
@@ -20,7 +20,7 @@ Now we can connect to a specific `ftp` server:
 open ftp.geos.ed.ac.uk
 ```
 
-As requested when you connect, type `anonymous` as your name.
+When requested, type `anonymous` as your name.
 
 Again as requested, enter your university email address (e.g. `s1234567@sms.ed.ac.uk`) as your password.
 
@@ -30,7 +30,7 @@ As in a normal Linux environment, we can list the files in the current directory
 ls
 ```
 
-`cd` to the `pub/geos` directory:
+`cd` to the `pub/geos/wkzero` directory:
 
 ```
 cd pub/geos/wkzero
@@ -48,7 +48,7 @@ Then download `jefferson.tar.gz` using `get`:
 get jefferson.tar.gz
 ```
 
-The file will be downloaded to the directory where we started `ftp` from, `~/linux_intro/wkzero/downloads`.
+The file will be downloaded to the directory where we started `ftp` from, `~/downloads`.
 
 Now close the connection using `bye`:
 

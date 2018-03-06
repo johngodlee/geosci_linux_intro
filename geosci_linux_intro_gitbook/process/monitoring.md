@@ -2,7 +2,7 @@
 
 On the GeoSciences Linux servers it is quite likely that other users will be working at the same time as you. You can see what everybody else is doing, and everybody else can see what you are doing. It is useful to know what processes you have running so that you can terminate processes, or manage your memory usage. It might also be useful to see what other people are doing that is using up all the memory on the server, making your programs run slowly!
 
-To see what other users are doing, use the `ps` command. Additionally, we will use the `-a` flag to show everybodys processes and `-f` flag to show the full amount of information for each process:
+To see what other processes are running, use the `ps` command. Additionally, we will use the `-a` flag to show everyone's processes and `-f` flag to show the full amount of information for each process:
 
 ```
 ps -af
@@ -28,7 +28,7 @@ du –sh
 du -sh ~/*
 ```
 
-The `*` symbol is a special character that returns everything within a given directory. You can also use `*` to avoid typing out a long file name. For instance, imagine I had a file called `really_long_file_name_2017_8_1.txt`, I could view the contents of that file with `cat` simply by typing:
+The `*` symbol is a special character called a "wildcard" that returns everything within a given directory. You can also use `*` to avoid typing out a long file name. For instance, imagine I had a file called `really_long_file_name_2017_8_1.txt`, I could view the contents of that file with `cat` simply by typing:
 
 ```
 cat *2017_8_1.txt

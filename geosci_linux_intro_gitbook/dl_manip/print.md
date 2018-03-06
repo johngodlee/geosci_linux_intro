@@ -8,5 +8,5 @@ To quickly print a file from the command line you can use the `lp` suite of comm
 
 `lprm 23456` removes job number `23456` from the queue.
 
-Once you have used `lp` to print a file, you can go to any GeoSciences printer and print the file on A4 paper as from a Windows machine.
+Once you have used `lp` to print a file, you can go to any GeoSciences printer and print the file on A4 paper as from a Windows machine, using the Cloud Print service.
 
